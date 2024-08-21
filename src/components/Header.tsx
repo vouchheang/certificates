@@ -1,38 +1,36 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import Logo from '../images/logo.png'
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "../images/sala.png";
 
 function Header() {
   return (
-    <header className="bg-white text-gray-600 font-Quicksand py-4">
+    <div className="pb-1">
+  
+
+    <header className="bg-white text-gray-600 font-Quicksand">
       <nav>
-        <ul className="flex justify-end items-center space-x-6 text-xl p-5">
-         <div className="mr-auto">
-         <Image src={Logo} alt="#" className="mb-8" />
-         </div>
+        <ul className="flex justify-end items-center space-x-6 text-xl ">
+          <div className="mr-auto">
+            <Image src={Logo} alt="#" />
+          </div>
           <li>
-            <Link href="/home">
-              Home
-            </Link>
+            <Link href="/home">Home</Link>
           </li>
           <li>
-            <Link href="/faq">
-              FAQ
-            </Link>
+            <Link href="/faq">FAQ</Link>
           </li>
           <li>
-            <Link href="/about">
-              About us
-            </Link>
+            <Link href="/about">About us</Link>
           </li>
           <li>
-          <button className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium">
-            Login
-          </button>
+            <button className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium">
+              Login
+            </button>
           </li>
         </ul>
       </nav>
     </header>
+    </div>
   );
 }
 
