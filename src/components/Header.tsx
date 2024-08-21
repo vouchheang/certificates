@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-// import logo from '../images/logo.png'
+import Logo from '../images/logo.png'
 
 function Header() {
   return (
@@ -8,7 +8,7 @@ function Header() {
       <nav>
         <ul className="flex justify-end items-center space-x-6 text-xl p-5">
          <div className="mr-auto">
-           {/* <Image src={logo} alt="Logo" className="h-8 w-auto" /> */}
+         <Image src={Logo} alt="#" className="mb-8" />
          </div>
           <li>
             <Link href="/home">
