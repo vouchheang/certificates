@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import Logo from '../images/logo.png'
+import Logo from '@/images/logo.png'
+import flat from '@/images/KH-flag.png'
 
 function Header() {
   return (
@@ -10,26 +10,12 @@ function Header() {
          <div className="mr-auto">
          <Image src={Logo} alt="logo" />
          </div>
-          <li>
-            <Link href="/home">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/faq">
-              FAQ
-            </Link>
-          </li>
-          <li>
-            <Link href="/about">
-              About us
-            </Link>
-          </li>
-          <li>
+          <div>
+          <Image src={flat} alt="flat" />
+          </div>
           <button className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium">
             Login
           </button>
-          </li>
         </ul>
       </nav>
     </header>
