@@ -50,7 +50,7 @@ function Contact() {
             <textarea
               className="w-[906px] h-[185px] font-medium text-[12px] leading-[17.5px]  rounded-[6px] border-[1px] p-[18px_20px] gap-[10px]"
               id="message"
-              placeholder="Write your message here..."
+              placeholder="Write your message here......."
             
             ></textarea>
           </div>
