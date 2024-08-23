@@ -1,14 +1,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Logo from '../images/logo.png'
+import logo from '../images/ logoh.png'
+
 
 function Header() {
   return (
-    <header className="bg-white text-gray-600 font-Quicksand py-4">
+    
+    <header className="bg-white text-gray-600 font-Quicksand pl-[40px] px-[40px] p-[10px]">
       <nav>
-        <ul className="flex justify-end items-center space-x-6 text-xl p-5">
+        <ul className="flex justify-end items-center space-x-6 text-xl ">
          <div className="mr-auto">
-         <Image src={Logo} alt="#" className="mb-8" />
+           <Image src={logo} alt="Logo" />
          </div>
           <li>
             <Link href="/home">
@@ -33,6 +35,7 @@ function Header() {
         </ul>
       </nav>
     </header>
+    
   );
 }
 
