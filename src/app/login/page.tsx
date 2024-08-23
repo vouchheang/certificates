@@ -10,7 +10,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col">
       <Header />
-      <div className="flex flex-1 bg-gray-50">
+      <div className="flex flex-1 bg-gray-50 mt-[5rem]">
         <div
           className="w-[1370px] h-[951px] p-[90px_40px] gap-[80px] lg:w-2/3 flex flex-col"
           style={{ backgroundImage: `url(${Background.src})` }}
@@ -42,14 +42,14 @@ export default function LoginPage() {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email Address *
+                  Email Address <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-[6px] shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm w-470 h-[50px] border-1 px-[18px_20px] flex gap-10"
+                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-[6px] shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm w-470 h-[50px] border-1 flex gap-10"
                   placeholder="example@gmail.com"
                 />
               </div>
@@ -58,7 +58,7 @@ export default function LoginPage() {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Password *
+                  Password <span className="text-red-600">*</span>
                 </label>
                 <input
                   type="password"
@@ -81,7 +81,7 @@ export default function LoginPage() {
                   className=" w-[50%] mr-20 block text-sm text-gray-900"
                 >
                   I agree with <span className="text-red-600">privacy</span> and
-                  <span className="text-red-600">policy</span>
+                  <span className="text-red-600"> policy</span>
                 </label>
 
                 <a

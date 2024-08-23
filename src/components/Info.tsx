@@ -9,14 +9,14 @@ import Call from "../images/call.png";
 
 function Info() {
   return (
-    <div className="w-full h-auto pt-16 pb-5 pl-10 gap-8 flex">
+    <div className="w-full h-auto pt-16 pb-5 pl-10 gap-8 flex border-[#330d0d]">
       <div className="w-full h-auto">
         <Image src={Logo} alt="#" className="mb-8" />
-        <p className="font-quicksand text-base text-left mb-3 text-black">
+        <p className="font-Quicksand text-base text-left mb-3 text-black">
           Sala is an edtech startup based in Cambodia with a simple vision to
-          enrich students' journeys. As a two-sided marketplace, Sala helps high
+          enrich students' journeys. As a two-sided marketplace, Sala helps high<br/>
           school students to make better college majors & career choices and for
-          institutions to connect and engage with our student community and
+          institutions to connect and engage with our student community and <br/>
           enable them to manage their academic operations through our school
           management suite.
         </p>
