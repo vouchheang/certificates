@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import Logo from '@/images/logo.png'
+import Logo from '@/images/mainlog.png'
 import flat from '@/images/KH-flag.png'
 
 function Header() {
   return (
-    <header className="bg-white text-gray-600 font-Quicksand border-b-2">
+    <header className="fixed left-0 right-0 bg-white text-gray-600 font-Quicksand border-b-2">
       <nav>
-        <ul className="flex justify-end items-center space-x-6 text-xl p-5">
+        <ul className="flex justify-end items-center space-x-6 text-xl h-[70px] p-10">
          <div className="mr-auto">
          <Image src={Logo} alt="logo" />
          </div>

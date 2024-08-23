@@ -1,4 +1,4 @@
-import Header from "@/components/Header1";
+import Header from "@/components/Header";
 import Image from 'next/image';
 import img from '@/images/Groupimg.png'
 import Button from "@/components/Button";
@@ -18,8 +18,8 @@ function Register(){
              <div className="flex-1 justify-center flex items-center" style={{backgroundImage: `url(${bglt.src}), url(${bglb.src}), url(${bgrt.src}), url(${bgrb.src})`}}>
              <Image src={img} alt="image" className="w-[706px] min-h-[706px] ml-[40px]" />
           </div>
-          <div className="flex flex-col flex-2 justify-center items-center w-[550px] h-screen bg-white shadow-2xl">
-             <div className="flex-col flex justify-center items-center ">
+          <div className="flex flex-col flex-2 justify-center items-center w-[550px] h-[1000px] bg-white shadow-2xl">
+             <div className="flex-col flex justify-center items-center">
               <h1 className="text-[24px] font-semibold">Create Account</h1>
               <p className="font-medium mt-5 text-[15px]">Let’s get a start Create account with Name for using </p>
           </div>
