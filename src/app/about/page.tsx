@@ -6,26 +6,24 @@ import Right from "../../images/bg-r.png";
 
 export default function AboutUs() {
   return (
-    <div className="w-full h-auto">
-    <div className="w-full h-[70px] px-[40px] py-[10px] gap-0 justify-between">
-  <Header />
-</div>
-
-    
+    <div className="w-full h-auto overflow-y-hidden">
+      <div className="w-full h-[70px] ">
+        <Header />
+      </div>
       <div
         className="w-full pl-8 bg-[#FBFBFB]"
         style={{
           backgroundImage: `url(${Left.src}), url(${Right.src})`,
         }}
       >
-        <h1 className="font-Quicksand text-[34px] font-semibold leading-[57.8px] text-center">
+        <h1 className="font-Quicksand text-[34px] leading-[57.8px] text-center">
           About Us
         </h1>
         <div className="w-full h-[364px] pt-[10px] px-0">
           <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] text-left">
             Our History
           </h3>
-          <div className="font-Quicksand text-[16px] font-semibold leading-[20px]">
+          <div className="font-Quicksand text-[16px] leading-[20px]">
             <p className="mb-3">
               <span className="text-[36px] leading-[45px]">Sala</span>  is a
               Cambodian educational platform that provides university and school
@@ -69,7 +67,7 @@ export default function AboutUs() {
         <h3 className="font-Quicksand text-[32px] font-bold leading-[40px]">
           Our Mission
         </h3>
-        <div className="font-Quicksand text-[16px] font-semibold leading-[20px] pt-2">
+        <div className="font-Quicksand text-[16px] leading-[20px] pt-2">
           <p className="mb-3">
             Educational platform that provides university and school information
             for high school students. The platform aims to empower students to
