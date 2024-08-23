@@ -27,7 +27,7 @@ function Info() {
         </div>
       </div>
       <div className="w-1/3 h-auto">
-        <h2 className="font-quicksand text-black opacity-40 text-xl font-bold">
+        <h2 className="font-Quicksand text-black opacity-40 text-xl font-bold">
           Find Us
         </h2>
         <div className="w-[361px] h-[130px] mt-4">
