@@ -6,7 +6,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ label }) => {
   return (
-    <button className="w-[36rem] h-[52px] px-[30px] py-[14px] rounded-[6px] bg-[#A6A6A6]">
+    <button className="w-[470px] h-[52px] px-[30px] py-[14px] rounded-[6px] bg-[#A6A6A6]">
       <p className="text-sm text-white font-semibold">{label}</p>
      
     </button>

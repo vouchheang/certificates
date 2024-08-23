@@ -5,7 +5,7 @@ import google from "../images/google.png";
 function ButtonGoogle(){
     return(
         <div className="text-center">
-      <button className="flex items-center justify-center w-[36rem] h-[52px] px-[30px] py-[14px] gap-[10px] border bg-[#00844C] bg-opacity-10 rounded-[6px] shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 opacity-100">
+      <button className="flex items-center justify-center w-[470px] h-[52px] px-[30px] py-[14px] gap-[10px] border bg-[#00844C] bg-opacity-10 rounded-[6px] shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 opacity-100">
         <Image
           src={google}
           alt="Google Logo"
