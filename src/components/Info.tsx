@@ -9,7 +9,7 @@ import Call from "../images/call.png";
 
 function Info() {
   return (
-    <div className="w-full h-auto pt-16 pb-5 pl-10 gap-8 flex justify-between">
+    <div className="w-full h-auto pt-16 pb-5 pl-10 gap-2 flex justify-between">
       <div className="w-full h-auto">
         <Image src={Logo} alt="#" className="mb-8" />
         <p className="font-Quicksand text-base text-left mb-3 text-black">
@@ -27,10 +27,11 @@ function Info() {
         </div>
       </div>
       <div>
-        <h2 className="font-quicksand text-black opacity-40 text-xl font-bold">
+        <div className="w-[525px] h-[185px] ml-5">
+        <h2 className="font-Quicksand text-black opacity-40 text-xl font-bold">
           Find Us
         </h2>
-        <div className="w-[361px] h-[130px] mt-4">
+        <div className="w-[380px] h-[130px] mt-4">
           <ul>
             <li className="flex gap-2">
               <Image
@@ -63,6 +64,8 @@ function Info() {
           </ul>
         </div>
       </div>
+        </div>
+        
     </div>
   );
 }
