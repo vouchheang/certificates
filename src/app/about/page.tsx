@@ -1,109 +1,131 @@
+"use client";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Info from "../../components/Info";
 import Left from "../../images/bg-l.png";
 import Right from "../../images/bg-r.png";
+import "../../style/about.css";
+
+interface AboutUsData {
+  attributes: {
+    Title: string;
+  };
+}
+
+interface BodyData {
+  attributes: {
+    Body: {
+      Heading: string;
+      span: string;
+      Paragraph: {
+        paragraph: string;
+      }[];
+    }[];
+  };
+}
 
 export default function AboutUs() {
+  const [aboutUsData, setAboutUsData] = useState<AboutUsData[]>([]);
+  const [bodyData, setBodyData] = useState<BodyData[]>([]);
+
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [response1, response2] = await Promise.all([
+          fetch("http://localhost:1337/api/about-us-pages?populate=*"),
+          fetch(
+            "http://localhost:1337/api/about-us-pages?populate[Body][populate]=*"
+          ),
+        ]);
+
+        if (!response1.ok || !response2.ok) {
+          throw new Error("One or more network responses were not ok");
+        }
+
+        const [data1, data2] = await Promise.all([
+          response1.json(),
+          response2.json(),
+        ]);
+
+        setAboutUsData(data1.data);
+        setBodyData(data2.data);
+
+      } catch (error) {
+        setError("Failed to fetch data");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!aboutUsData || !bodyData) {
+    return (
+      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-sm">
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full h-auto overflow-y-hidden">
-      <div className="w-full h-[70px] ">
+    <div className={`w-full h-auto overflow-y-hidden container`}>
+      <div className="w-full h-[70px] header">
         <Header />
       </div>
       <div
-        className="w-full pl-8 bg-[#FBFBFB]"
+        className="w-full pl-8 bg-[#FBFBFB] body"
         style={{
           backgroundImage: `url(${Left.src}), url(${Right.src})`,
-        }}
-      >
-        <h1 className="font-Quicksand text-[34px] leading-[57.8px] text-center">
-          About Us
+        }}>
+        <h1 className={`font-Quicksand text-[34px] font-bold leading-[57.8px] text-center title`}>
+          {aboutUsData[0]?.attributes.Title}
         </h1>
-        <div className="w-full h-[364px] pt-[10px] px-0">
-          <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] text-left">
-            Our History
+        <div className="w-full h-[364px] pt-[10px] px-0 body-history">
+          <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] text-left text">
+            {bodyData[0]?.attributes.Body[0]?.Heading}
           </h3>
-          <div className="font-Quicksand text-[16px] leading-[20px]">
+          <div className={`font-Quicksand text-[16px] leading-[20px]`}>
             <p className="mb-3">
-              <span className="text-[36px] leading-[45px]">Sala</span>  is a
-              Cambodian educational platform that provides university and school
-              information for high school students. The platform aims to empower
-              students to make better college majors and career choices by
-              offering educational opportunities and promotions. Sala is the
-              first university and school information portal in Cambodia, and it
-              has been praised for its ability to help students make informed
-              decisions about their future.
+              <span className="text-[36px] leading-[45px]">
+                {bodyData[0]?.attributes.Body[0]?.span}
+              </span>
+               {bodyData[0]?.attributes.Body[0]?.Paragraph[0]?.paragraph}
             </p>
             <p className="mb-3">
-              Sala offers a range of features, including a mobile app that
-              allows students to seek advice and guidance, as well as take tests
-              to determine their best-fit major and professional career. The
-              platform is designed to be user-friendly, with a clean interface
-              that makes it easy for students to navigate and find the
-              information they need.
+              {bodyData[0]?.attributes.Body[0]?.Paragraph[1]?.paragraph}
             </p>
             <p className="mb-3">
-              At Sala, we believe that every student deserves access to quality
-              education. That’s why we’re committed to providing the best
-              possible resources and support to help students achieve their
-              goals. Whether you’re a high school student looking for
-              information on colleges and universities, or a college student
-              seeking guidance on your career path, Sala has everything you need
-              to succeed.
+              {bodyData[0]?.attributes.Body[0]?.Paragraph[2]?.paragraph}
             </p>
             <p className="mb-3">
-              At Sala, we believe that every student deserves access to quality
-              education. That’s why we’re committed to providing the best
-              possible resources and support to help students achieve their
-              goals. Whether you’re a high school student looking for
-              information on colleges and universities, or a college student
-              seeking guidance on your career path, Sala has everything you need
-              to succeed.
+              {bodyData[0]?.attributes.Body[0]?.Paragraph[3]?.paragraph}
             </p>
           </div>
         </div>
       </div>
-      <div className="pl-8">
-        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px]">
-          Our Mission
+      <div className="pl-8 body-mission">
+        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] text">
+          {bodyData[0]?.attributes.Body[1]?.Heading}
         </h3>
         <div className="font-Quicksand text-[16px] leading-[20px] pt-2">
           <p className="mb-3">
-            Educational platform that provides university and school information
-            for high school students. The platform aims to empower students to
-            make better college majors and career choices by offering
-            educational opportunities and promotions. Sala is the first
-            university and school information portal in Cambodia, and it has
-            been praised for its ability to help students make informed
-            decisions about their future.
+            {bodyData[0]?.attributes.Body[1]?.Paragraph[0]?.paragraph}
           </p>
           <p className="mb-3">
-            Sala offers a range of features, including a mobile app that allows
-            students to seek advice and guidance, as well as take tests to
-            determine their best-fit major and professional career. The platform
-            is designed to be user-friendly, with a clean interface that makes
-            it easy for students to navigate and find the information they need.
+            {bodyData[0]?.attributes.Body[1]?.Paragraph[1]?.paragraph}
           </p>
           <p className="mb-3">
-            At Sala, we believe that every student deserves access to quality
-            education. That’s why we’re committed to providing the best possible
-            resources and support to help students achieve their goals. Whether
-            you’re a high school student looking for information on colleges and
-            universities, or a college student seeking guidance on your career
-            path, Sala has everything you need to succeed.
+            {bodyData[0]?.attributes.Body[1]?.Paragraph[2]?.paragraph}
           </p>
           <p className="mb-3">
-            At Sala, we believe that every student deserves access to quality
-            education. That’s why we’re committed to providing the best possible
-            resources and support to help students achieve their goals. Whether
-            you’re a high school student looking for information on colleges and
-            universities, or a college student seeking guidance on your career
-            path, Sala has everything you need to succeed.
+            {bodyData[0]?.attributes.Body[1]?.Paragraph[3]?.paragraph}
           </p>
         </div>
       </div>
 
-      <div className="w-full">
+      <div className="w-full footer">
         <Info />
         <Footer />
       </div>

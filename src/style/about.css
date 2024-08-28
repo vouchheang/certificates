@@ -1,0 +1,29 @@
+ @media (max-width: 640px) {
+    .container {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: yellowgreen;
+     
+    }
+    
+    .body{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .body-history{
+        flex: 1;
+    }
+    .body-mission{
+        flex: 1;
+    }
+    .title{
+        text-align: center;
+    }
+    .text{
+        font-size: 1.5rem;
+    }
+ }
+  
