@@ -82,11 +82,11 @@ export default function Info() {
         </div>
       </div>
       <div className="infomation">
-        <div className="w-[525px] h-[185px] contact-info">
+        <div className="w-full h-[185px] contact-info">
           <h2 className="font-Quicksand text-black opacity-40 text-xl font-bold">
             Find Us
           </h2>
-          <div className="w-[380px] h-[130px] mt-4">
+          <div className="w-full h-[130px] mt-4">
             <ul>
               <li className="flex gap-2">
                 <Image

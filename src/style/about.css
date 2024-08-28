@@ -1,8 +1,7 @@
- @media (max-width: 640px) {
+ @media (max-width: 414px) {
     .container {
-      width: 100%;
+      width: 90%;
       box-sizing: border-box;
-      background-color: yellowgreen;
      
     }
     

@@ -70,7 +70,7 @@ export default function AboutUs() {
   }
 
   return (
-    <div className={`w-full h-auto overflow-y-hidden container`}>
+    <div className={`w-full overflow-y-hidden container min-h-screen`}>
       <div className="w-full h-[70px] header">
         <Header />
       </div>
