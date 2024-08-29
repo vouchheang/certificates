@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import "../style/footer.css"
+import "../style/about.css";
 
 interface FooterData {
   attributes: {
@@ -35,8 +35,6 @@ export default function Footer() {
         const [data] = await Promise.all([response.json()]);
 
         setFooterData(data.data);
-
-        
       } catch (error) {
         setError("error");
       }
@@ -54,7 +52,7 @@ export default function Footer() {
   }
   return (
     <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-sm footer-container">
-      <div className="flex space-x-2 footer-text">
+      <div className="flex space-x-2 footer-text sm:text-[12px] lg:ml-0 ">
         <span className="">{footerData[0]?.attributes.footer.text}</span>
         <span>|</span>
         <a

@@ -1,28 +1,61 @@
- @media (max-width: 414px) {
-    .container {
-      width: 90%;
-      box-sizing: border-box;
-     
-    }
-    
-    .body{
-        width: 100%;
-        height: auto;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-    .body-history{
-        flex: 1;
-    }
-    .body-mission{
-        flex: 1;
-    }
-    .title{
-        text-align: center;
-    }
-    .text{
-        font-size: 1.5rem;
-    }
- }
-  
+@media (max-width: 414px) {
+  .container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .body-history {
+    flex: 1;
+    padding: 10px;
+  }
+  .body-mission {
+    flex: 1;
+    padding: 10px;
+  }
+  .title {
+    text-align: center;
+  }
+  .text {
+    font-size: 1.5rem;
+  }
+  .header-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  button {
+    height: auto;
+  }
+  .login-button {
+    font-size: 14px;
+  }
+
+  .footer-text {
+    font-size: 0.6rem;
+    margin: auto;
+  }
+
+  .info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .company-info {
+    flex: 1;
+  }
+  .contact-info {
+    flex: 1;
+    margin-top: 10px;
+  }
+  ul li a {
+    font-size: 0.8rem;
+  }
+  .find-us {
+    margin-top: 10px;
+    margin-left: 1%;
+    opacity: 60%;
+  }
+}

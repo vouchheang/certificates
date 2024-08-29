@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import "../style/about.css";
+import Image from "next/image";
 
 interface HeaderData {
   attributes: {
@@ -18,7 +20,7 @@ interface HeaderData {
           width: number;
           height: number;
         };
-      }[]
+      }[];
     };
   };
 }
@@ -43,7 +45,6 @@ export default function Header() {
         const [data] = await Promise.all([response.json()]);
 
         setHeaderData(data.data);
-
       } catch (error) {
         setError("error");
       }
@@ -60,43 +61,41 @@ export default function Header() {
     );
   }
   return (
-    <div className="pb-1 ">
-      <header className=" fixed top-0 left-0 w-full bg-white text-gray-600 font-Quicksand p-2">
-        <nav>
-          <ul className="flex justify-end items-center space-x-6 text-xl">
-            <div className="mr-auto">
-             <img src={`http://localhost:1337${headerData[0]?.attributes.logo.data[1].attributes.url}`}
+    <div className="fixed top-0 left-0 w-full bg-white justify-between text-gray-600 p-2 header-container">
+      <nav>
+        <ul className="flex justify-end items-center space-x-6 text-xl">
+          <div className="mr-auto">
+            {/* <Image src={`/http://localhost:1337${headerData[0]?.attributes.logo.data[1].attributes.url}`}
                 alt="#"
-                width={headerData[0]?.attributes.logo.data[1].attributes.width}
-                height={headerData[0]?.attributes.logo.data[1].attributes.height} /> 
-              
-            </div>
-            <li>
-              <a href={headerData[0]?.attributes.NavBar[0]?.path}>
-                {headerData[0]?.attributes.NavBar[0]?.label}
-              </a>
-            </li>
-            <li>
-              <a href={headerData[0]?.attributes.NavBar[1]?.path}>
-                {headerData[0]?.attributes.NavBar[1]?.label}
-              </a>
-            </li>
-            <li>
-              <a href={headerData[0]?.attributes.NavBar[2]?.path}>
-                {headerData[0]?.attributes.NavBar[2]?.label}
-              </a>
-            </li>
-            <li>
-              <button
-                typeof={headerData[0]?.attributes.Button.Buttontype}
-                className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium"
-              >
-                {headerData[0]?.attributes.Button.label}
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
+                width={100}
+                height={100}  /> 
+               */}
+          </div>
+          <li>
+            <a href={headerData[0]?.attributes.NavBar[0]?.path}>
+              {headerData[0]?.attributes.NavBar[0]?.label}
+            </a>
+          </li>
+          <li>
+            <a href={headerData[0]?.attributes.NavBar[1]?.path}>
+              {headerData[0]?.attributes.NavBar[1]?.label}
+            </a>
+          </li>
+          <li>
+            <a href={headerData[0]?.attributes.NavBar[2]?.path}>
+              {headerData[0]?.attributes.NavBar[2]?.label}
+            </a>
+          </li>
+          <li>
+            <button
+              typeof={headerData[0]?.attributes.Button.Buttontype}
+              className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium login-button"
+            >
+              {headerData[0]?.attributes.Button.label}
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }

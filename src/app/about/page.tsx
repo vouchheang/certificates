@@ -52,7 +52,6 @@ export default function AboutUs() {
 
         setAboutUsData(data1.data);
         setBodyData(data2.data);
-
       } catch (error) {
         setError("Failed to fetch data");
       }
@@ -70,46 +69,50 @@ export default function AboutUs() {
   }
 
   return (
-    <div className={`w-full overflow-y-hidden container min-h-screen`}>
-      <div className="w-full h-[70px] header">
+    <div className={`w-full overflow-y-hidden flex flex-col container `}>
+      <div className="h-[70px] header">
         <Header />
       </div>
       <div
-        className="w-full pl-8 bg-[#FBFBFB] body"
+        className="w-full bg-[#FBFBFB] flex-1 pl-8 body-history "
         style={{
           backgroundImage: `url(${Left.src}), url(${Right.src})`,
-        }}>
-        <h1 className={`font-Quicksand text-[34px] font-bold leading-[57.8px] text-center title`}>
+        }}
+      >
+        <h1
+          className={`font-Quicksand text-[34px] font-bold leading-[57.8px] text-center title`}
+        >
           {aboutUsData[0]?.attributes.Title}
         </h1>
-        <div className="w-full h-[364px] pt-[10px] px-0 body-history">
-          <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] text-left text">
-            {bodyData[0]?.attributes.Body[0]?.Heading}
-          </h3>
-          <div className={`font-Quicksand text-[16px] leading-[20px]`}>
-            <p className="mb-3">
-              <span className="text-[36px] leading-[45px]">
-                {bodyData[0]?.attributes.Body[0]?.span}
-              </span>
-               {bodyData[0]?.attributes.Body[0]?.Paragraph[0]?.paragraph}
-            </p>
-            <p className="mb-3">
-              {bodyData[0]?.attributes.Body[0]?.Paragraph[1]?.paragraph}
-            </p>
-            <p className="mb-3">
-              {bodyData[0]?.attributes.Body[0]?.Paragraph[2]?.paragraph}
-            </p>
-            <p className="mb-3">
-              {bodyData[0]?.attributes.Body[0]?.Paragraph[3]?.paragraph}
-            </p>
-          </div>
+
+        <h3 className="font-Quicksand text-[32px] font-bold text-left sm:pl-2 lg:p-2 text">
+          {bodyData[0]?.attributes.Body[0]?.Heading}
+        </h3>
+        <div
+          className={`font-Quicksand text-[16px] leading-[20px] sm:p-2 sm:text-[15px] lg:p-2`}
+        >
+          <p className="mb-3">
+            <span className="text-[36px] leading-[45px]">
+              {bodyData[0]?.attributes.Body[0]?.span}
+            </span>
+             {bodyData[0]?.attributes.Body[0]?.Paragraph[0]?.paragraph}
+          </p>
+          <p className="mb-3">
+            {bodyData[0]?.attributes.Body[0]?.Paragraph[1]?.paragraph}
+          </p>
+          <p className="mb-3">
+            {bodyData[0]?.attributes.Body[0]?.Paragraph[2]?.paragraph}
+          </p>
+          <p className="mb-3">
+            {bodyData[0]?.attributes.Body[0]?.Paragraph[3]?.paragraph}
+          </p>
         </div>
       </div>
-      <div className="pl-8 body-mission">
-        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] text">
+      <div className="flex-1 mt-8 body-mission pl-8 ">
+        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] sm:pl-2 lg:p-2 text">
           {bodyData[0]?.attributes.Body[1]?.Heading}
         </h3>
-        <div className="font-Quicksand text-[16px] leading-[20px] pt-2">
+        <div className="font-Quicksand text-[16px] leading-[20px] pt-2 sm:p-2 sm:text-[15px] lg:p-2">
           <p className="mb-3">
             {bodyData[0]?.attributes.Body[1]?.Paragraph[0]?.paragraph}
           </p>
@@ -125,10 +128,8 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <div className="w-full footer">
-        <Info />
-        <Footer />
-      </div>
+      <Info />
+      <Footer />
     </div>
   );
 }
