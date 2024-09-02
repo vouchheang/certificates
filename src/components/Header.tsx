@@ -1,41 +1,33 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import logo from '../images/ logoh.png'
-
-
+import Image from "next/image";
+import Logo from "../images/ logoh.png";
 function Header() {
   return (
-    
-    <header className="bg-white text-gray-600 font-Quicksand pl-[40px] px-[40px] p-[10px]">
+    <div className="fixed top-0 left-0 w-full bg-white justify-between text-gray-600 p-2 header-container">
       <nav>
-        <ul className="flex justify-end items-center space-x-6 text-xl ">
-         <div className="mr-auto">
-           <Image src={logo} alt="Logo" />
-         </div>
+        <ul className="flex justify-end items-center space-x-6 text-xl">
+          <div className="mr-auto">
+            <Image src={Logo} alt="#" />
+          </div>
           <li>
-            <Link href="/home">
-              Home
-            </Link>
+            <a href="#">Home</a>
           </li>
           <li>
-            <Link href="/faq">
-              FAQ
-            </Link>
+            <a href="#">FAQ</a>
           </li>
           <li>
-            <Link href="/about">
-              About us
-            </Link>
+            <a href="">About Us</a>
           </li>
           <li>
-          <button className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium">
-            Login
-          </button>
+            <button
+              typeof="submit"
+              className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium login-button"
+            >
+              Login
+            </button>
           </li>
         </ul>
       </nav>
-    </header>
-    
+    </div>
   );
 }
 

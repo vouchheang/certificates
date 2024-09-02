@@ -1,14 +1,14 @@
 import Header from "@/components/Header";
-import Contact from "@/components/Contact";
+import Terms from "@/components/Terms";
 import Footer from "@/components/Footer";
 import Info from "@/components/Info";
 export default function Home() {
   return (
     <>
-    <Header/>
-     <Contact></Contact>
-<Info></Info>
-     <Footer></Footer>
+      <Header />
+      <Terms></Terms>
+      <Info></Info>
+      <Footer></Footer>
     </>
   );
 }
