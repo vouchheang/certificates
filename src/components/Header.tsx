@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Logo from '@/images/mainlog.png'
 import flat from '@/images/KH-flag.png'
+import Link from 'next/link';
 
 function Header() {
   return (
@@ -14,7 +15,7 @@ function Header() {
           <Image src={flat} alt="flat" />
           </div>
           <button className="rounded-xl border-2 bg-green-800 text-white px-6 py-2 text-lg font-medium">
-            Login
+            <Link href="/login">Login</Link>
           </button>
         </ul>
       </nav>

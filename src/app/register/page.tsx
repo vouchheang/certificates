@@ -14,7 +14,10 @@ import React ,{useState, useEffect} from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle,faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash,faEye } from "@fortawesome/free-solid-svg-icons";
+import eyeslash from "@/images/eyehide.webp"
+import eyes from "@/images/eye.png"
+import {toast, ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 interface UserFormInput {
@@ -25,22 +28,21 @@ interface UserFormInput {
   confirm_password: number;
   gender: string[];
   agree: boolean;
-
-
 }
 
    function Register(){
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [createPassword, setCreatePassword] = useState(0);
-    const [confirmPassword, setConfirmPassword] = useState(0);
-    const [createPasswordView, setCreatePasswordView] = useState(false);
-    const [confirmPasswordView, setConfirmPasswordView] = useState(false);
+    const [firstName, setFirstName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [confirmPassword, setConfirmPassword] = useState<string>("");
+    const [createPasswordView, setCreatePasswordView] = useState<boolean>(false);
+    const [confirmPasswordView, setConfirmPasswordView] = useState<boolean>(false);
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm<UserFormInput>({
       mode: "onChange"
     });
     const [isButtonDisabled, setIsButtonDisabled] = useState(true); 
+    
 
     const createPasswordViewVisible = () =>{
       setCreatePasswordView(!createPasswordView);
@@ -55,10 +57,17 @@ interface UserFormInput {
       setIsButtonDisabled(isAnyFieldInvalid);
      },[watchField]);
     
-    
     const onSubmit: SubmitHandler<UserFormInput> = async (data) => {
       console.log(data);
+      if (password === confirmPassword) {
+        toast.success("You have successfully Create Account.");
+      } else {
+        toast.error("Passwords do not match.");
+      }
       reset();
+      setFirstName("");
+      setLastName("");
+      setEmail("");
       try {
         const response = await fetch('', {
           method: 'POST',
@@ -138,7 +147,7 @@ interface UserFormInput {
               onChange: (e) => setEmail(e.target.value)})}
               className="flex-grow pl-3 pr-3 rounded-lg outline-none" placeholder=""/>
               {errors.email ?  ( 
-              <FontAwesomeIcon icon={faXmarkCircle} className=" text-red-600 mr-5 size-4" />
+                <FontAwesomeIcon icon={faXmarkCircle} className=" text-red-600 mr-5 size-4" />
               ) : email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && (
                 <FontAwesomeIcon icon={faCheckCircle} className="text-[#60E354] mr-5 size-4" />
               )}
@@ -153,12 +162,18 @@ interface UserFormInput {
                type={createPasswordView ? "text" : "password"}
                {...register("create_password",{ 
                  required: true,
-                 minLength: {value: 6, message:"At least 6 characters"}, 
-                 onChange: (e) => setCreatePassword(e.target.value)})}
+                 onChange: (e) => setPassword(e.target.value),
+                 minLength: {value: 6, message:"At least 6 characters"},})}
                 className="flex-grow pl-3 pr-3 rounded-lg outline-none " 
                 placeholder="Enter your password"/>
-               <FontAwesomeIcon icon={createPasswordView ? faEyeSlash :faEye} 
-               className=" text-[#717171] mr-5" onClick={createPasswordViewVisible} />
+               <Image 
+                src={createPasswordView ? eyeslash : eyes} 
+                alt="Toggle Password Visibility" 
+                className="text-[#717171] mr-5 cursor-pointer" 
+                onClick={createPasswordViewVisible} 
+                width={20} 
+                height={15} 
+              />
               </div>
               {errors.create_password && <p className="text-red-600 text-[13px] font-medium">{errors.create_password.message}</p>}           
           </div>
@@ -170,14 +185,19 @@ interface UserFormInput {
               type={confirmPasswordView ? "text" : "password"}
               {...register("confirm_password", {
                 required: true,
-                minLength: { value: 6, message: "At least 6 characters" },
                 onChange: (e) => setConfirmPassword(e.target.value),
-              })}
+                minLength: { value: 6, message: "At least 6 characters" },})}
               className="flex-grow pl-3 pr-3 rounded-lg outline-none"
               placeholder="Enter your password"
             />
-
-               <FontAwesomeIcon icon={ confirmPasswordView ? faEyeSlash :faEye} className=" text-[#717171] mr-5" onClick={confirmPasswordViewVisible}  />
+            <Image 
+                src={confirmPasswordView ? eyeslash : eyes} 
+                alt="Toggle Password Visibility" 
+                className="text-[#717171] mr-5 cursor-pointer" 
+                onClick={confirmPasswordViewVisible} 
+                width={20} 
+                height={15} 
+              />
               </div>
               {errors.confirm_password && <p className="text-red-600 text-[13px] font-medium">{errors.confirm_password.message}</p>}
           </div>
@@ -185,7 +205,7 @@ interface UserFormInput {
              <h1 className="text-[16px] font-semibold text-gray-800">Gender 
              <span className="text-gray-800">*</span></h1>
           <div className="flex items-center gap-2">
-              <input type="radio" value="Femal" 
+              <input type="radio" value="Female" 
               {...register('gender', { required: true })} 
               className="min-h-8 border-2 rounded-lg" />
               <label className="text-base font-medium text-[14px]">Female</label>
@@ -221,6 +241,11 @@ interface UserFormInput {
           </div>
               <ButtonGoogle />
           </div>
+          <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              className={`h-[25%] flex flex-wrap content-start gap-2`} 
+            />
           </div>
           </div>
         </form>
