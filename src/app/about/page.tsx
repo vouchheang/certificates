@@ -1,57 +1,47 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import Info from "../../components/Info";
 import Left from "../../images/bg-l.png";
 import Right from "../../images/bg-r.png";
-import "../../style/about.css";
 
 interface AboutUsData {
   attributes: {
-    Title: string;
-  };
-}
-
-interface BodyData {
-  attributes: {
-    Body: {
-      Heading: string;
+    title: string;
+    backgroound: {
+      attributes: {
+        url: string;
+      };
+    };
+    leftbg: {
+      attributes: {
+        url: string;
+      };
+    };
+    components: {
       span: string;
-      Paragraph: {
-        paragraph: string;
-      }[];
+      paragraph: string;
     }[];
   };
 }
 
 export default function AboutUs() {
   const [aboutUsData, setAboutUsData] = useState<AboutUsData[]>([]);
-  const [bodyData, setBodyData] = useState<BodyData[]>([]);
-
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response1, response2] = await Promise.all([
-          fetch("http://localhost:1337/api/about-us-pages?populate=*"),
-          fetch(
-            "http://localhost:1337/api/about-us-pages?populate[Body][populate]=*"
-          ),
+        const [response] = await Promise.all([
+          fetch("http://localhost:1337/api/abouts?populate=*"),
         ]);
 
-        if (!response1.ok || !response2.ok) {
+        if (!response.ok) {
           throw new Error("One or more network responses were not ok");
         }
 
-        const [data1, data2] = await Promise.all([
-          response1.json(),
-          response2.json(),
-        ]);
+        const [data] = await Promise.all([response.json()]);
 
-        setAboutUsData(data1.data);
-        setBodyData(data2.data);
+        setAboutUsData(data.data);
       } catch (error) {
         setError("Failed to fetch data");
       }
@@ -60,76 +50,70 @@ export default function AboutUs() {
     fetchData();
   }, []);
 
-  if (!aboutUsData || !bodyData) {
+  if (!aboutUsData) {
     return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-sm">
+      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className={`w-full overflow-y-hidden flex flex-col container `}>
-      <div className="h-[70px] header">
-        <Header />
-      </div>
+    <div className={`w-full flex flex-col `}>
       <div
-        className="w-full bg-[#FBFBFB] flex-1 pl-8 body-history "
+        className="w-full bg-[#FBFBFB] pl-8"
         style={{
           backgroundImage: `url(${Left.src}), url(${Right.src})`,
         }}
       >
         <h1
-          className={`font-Quicksand text-[34px] font-bold leading-[57.8px] text-center title`}
+          className={`font-Quicksand text-[34px] font-bold text-center max-sm:pt-[15%] sm:pt-[15%] md:pt-[8%] lg:pt-[8%] xl:pt-[6%]`}
         >
-          {aboutUsData[0]?.attributes.Title}
+          {aboutUsData[0]?.attributes.title}
         </h1>
 
-        <h3 className="font-Quicksand text-[32px] font-bold text-left sm:pl-2 lg:p-2 text">
-          {bodyData[0]?.attributes.Body[0]?.Heading}
+        <h3 className="font-Quicksand text-[32px] font-bold text-left max-sm:pl-2 lg:p-2">
+          {aboutUsData[0]?.attributes.components[4].span}
         </h3>
         <div
-          className={`font-Quicksand text-[16px] leading-[20px] sm:p-2 sm:text-[15px] lg:p-2`}
+          className={`font-Quicksand text-[16px] leading-[20px] max-sm:p-2 max-sm:text-[15px] lg:p-2`}
         >
           <p className="mb-3">
             <span className="text-[36px] leading-[45px]">
-              {bodyData[0]?.attributes.Body[0]?.span}
+              {aboutUsData[0]?.attributes.components[3].span}
             </span>
-             {bodyData[0]?.attributes.Body[0]?.Paragraph[0]?.paragraph}
+            {aboutUsData[0]?.attributes.components[3].paragraph}
           </p>
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[0]?.Paragraph[1]?.paragraph}
+            {aboutUsData[0]?.attributes.components[4].paragraph}
           </p>
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[0]?.Paragraph[2]?.paragraph}
+            {aboutUsData[0]?.attributes.components[5].paragraph}
           </p>
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[0]?.Paragraph[3]?.paragraph}
+            {aboutUsData[0]?.attributes.components[6].paragraph}
           </p>
         </div>
       </div>
-      <div className="flex-1 mt-8 body-mission pl-8 ">
-        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] sm:pl-2 lg:p-2 text">
-          {bodyData[0]?.attributes.Body[1]?.Heading}
+      <div className="flex-1 mt-8 pl-8 ">
+        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] max-sm:pl-2 lg:p-2">
+          {aboutUsData[0]?.attributes.components[7].span}
         </h3>
-        <div className="font-Quicksand text-[16px] leading-[20px] pt-2 sm:p-2 sm:text-[15px] lg:p-2">
+        <div className="font-Quicksand text-[16px] leading-[20px] pt-2 max-sm:p-2 max-sm:text-[15px] lg:p-2">
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[1]?.Paragraph[0]?.paragraph}
+            {aboutUsData[0]?.attributes.components[7].paragraph}
           </p>
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[1]?.Paragraph[1]?.paragraph}
+            {aboutUsData[0]?.attributes.components[8].paragraph}
           </p>
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[1]?.Paragraph[2]?.paragraph}
+            {aboutUsData[0]?.attributes.components[9].paragraph}
           </p>
           <p className="mb-3">
-            {bodyData[0]?.attributes.Body[1]?.Paragraph[3]?.paragraph}
+            {aboutUsData[0]?.attributes.components[10].paragraph}
           </p>
         </div>
       </div>
-
-      <Info />
-      <Footer />
     </div>
   );
 }
