@@ -18,6 +18,8 @@ import eyeslash from "@/images/eyehide.webp"
 import eyes from "@/images/eye.png"
 import {toast, ToastContainer} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import Input from "@/components/Input";
+import RadioButton from "@/components/RadioButton";
 
 
 interface UserFormInput {
@@ -34,14 +36,14 @@ interface UserFormInput {
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+    const [createPassword, setCreatePassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [createPasswordView, setCreatePasswordView] = useState<boolean>(false);
     const [confirmPasswordView, setConfirmPasswordView] = useState<boolean>(false);
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm<UserFormInput>({
       mode: "onChange"
     });
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true); 
+    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true); 
     
 
     const createPasswordViewVisible = () =>{
@@ -53,29 +55,29 @@ interface UserFormInput {
 
     const watchField = watch();
      useEffect (() => {
-      const isAnyFieldInvalid = Object.values(watchField).some(value => value === '' || value === false);
+    const isAnyFieldInvalid = Object.values(watchField).some(value => value === '' || value === false);
       setIsButtonDisabled(isAnyFieldInvalid);
      },[watchField]);
     
     const onSubmit: SubmitHandler<UserFormInput> = async (data) => {
       console.log(data);
-      if (password === confirmPassword) {
+      if (createPassword === confirmPassword) {
         toast.success("You have successfully Create Account.");
       } else {
         toast.error("Passwords do not match.");
       }
       reset();
-      setFirstName("");
-      setLastName("");
-      setEmail("");
+       setFirstName("");
+       setLastName("");
+       setEmail("");
       try {
-        const response = await fetch('', {
+      const response = await fetch('', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-          },
+          'Content-Type': 'application/json',
+      },
           body: JSON.stringify(data),
-        });
+      });
   
         if (response.ok) {
           const responseData = await response.json();
@@ -88,15 +90,13 @@ interface UserFormInput {
         console.error('An error occurred while submitting the form:', error);
       }
       };
-    
 
-    
     return <>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex box-border">
           < Header />
-          <div className="flex-1 max-md:hidden justify-center flex items-center" style={{backgroundImage: `url(${bglt.src}), url(${bglb.src}), url(${bgrt.src}), url(${bgrb.src})`}}>
-             <Image src={img} alt="image" className="w-[45%] min-h-[45%] ml-[40px]" />
+          <div className="flex-1 max-md:hidden justify-center flex items-center w-full h-screen object-cover" style={{backgroundImage: `url(${bglt.src}), url(${bglb.src}), url(${bgrt.src}), url(${bgrb.src})`}}>
+             <Image src={img} alt="image" className="max-w-[40%] max-h-[60%] ml-[40px]" />
           </div>
           <div className="flex flex-col flex-2 justify-center items-center w-[550px] h-[1000px] max-md:w-[755px] bg-white shadow-2xl">
            <div className="flex-col flex justify-center items-center mt-[3rem]">
@@ -104,38 +104,26 @@ interface UserFormInput {
               <p className="font-medium mt-5 text-[13px]">Let’s get a start Create account with Name for using </p>
            </div>
          <div className="flex flex-col justify-center items-center">
-          <div className="flex flex-col text-[13px]">
-              <label className="mt-3 text-base font-medium">First Name</label>
-              <div className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] ${errors.first_name && " border-red-400"}`}>
-              <input type="text" 
-              {...register("first_name", {required: "This field is required.",
-               onChange: (e) => setFirstName(e.target.value), })}
-               className="flex-grow pl-3 pr-3 rounded-lg outline-none" placeholder=""/>
-             {errors.first_name ? (
-              <FontAwesomeIcon icon={faXmarkCircle} className="text-red-600 mr-5 size-4" />
-            ) : firstName && (
-              <FontAwesomeIcon icon={faCheckCircle} className="text-[#60E354] mr-5 size-4" />
-            )}
-            </div>
-            {errors.first_name && <p className="text-red-600 text-[13px] font-medium mt-1">{errors.first_name.message}</p>}
-          </div>
+          <Input
+            label="First Name"
+            register={register}
+            errors={errors}
+            name="first_name"
+            value={firstName}
+            setValue={setFirstName}
+            placeholder=""
+          />
 
-          <div className="flex flex-col text-[13px]">
-              <label className="mt-3 text-base font-medium">Last Name</label>
-              <div className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] ${errors.last_name && " border-red-400"}`}>
-              <input 
-              type="text" 
-              {...register("last_name",
-               { required: true, onChange: (e) => setLastName(e.target.value), })}
-               className="flex-grow pl-3 pr-3 rounded-lg outline-none" placeholder=""/>
-              {errors.last_name ? ( 
-                 <FontAwesomeIcon icon={faXmarkCircle} className=" text-red-600 mr-5 size-4" />
-              ) : lastName && (
-                <FontAwesomeIcon icon={faCheckCircle} className="text-[#60E354] mr-5 size-4" />
-              )}
-              </div>
-              {errors.last_name && <p className="text-red-600 text-[13px] font-medium">This field is required.</p>}
-          </div>
+          <Input
+            label="Last Name"
+            register={register}
+            errors={errors}
+            name="last_name"
+            value={lastName}
+            setValue={setLastName}
+            placeholder=""
+          />
+
           <div className="flex flex-col text-[13px]">
               <label className="mt-3 text-base font-medium">Email 
               <span className="text-gray-800">*</span></label>
@@ -162,11 +150,12 @@ interface UserFormInput {
                type={createPasswordView ? "text" : "password"}
                {...register("create_password",{ 
                  required: true,
-                 onChange: (e) => setPassword(e.target.value),
+                 onChange: (e) => setCreatePassword(e.target.value),
                  minLength: {value: 6, message:"At least 6 characters"},})}
-                className="flex-grow pl-3 pr-3 rounded-lg outline-none " 
-                placeholder="Enter your password"/>
-               <Image 
+                 className="flex-grow pl-3 pr-3 rounded-lg outline-none " 
+                 placeholder="Enter your password"
+                />
+              <Image 
                 src={createPasswordView ? eyeslash : eyes} 
                 alt="Toggle Password Visibility" 
                 className="text-[#717171] mr-5 cursor-pointer" 
@@ -187,9 +176,9 @@ interface UserFormInput {
                 required: true,
                 onChange: (e) => setConfirmPassword(e.target.value),
                 minLength: { value: 6, message: "At least 6 characters" },})}
-              className="flex-grow pl-3 pr-3 rounded-lg outline-none"
-              placeholder="Enter your password"
-            />
+                className="flex-grow pl-3 pr-3 rounded-lg outline-none"
+                placeholder="Enter your password"
+              />
             <Image 
                 src={confirmPasswordView ? eyeslash : eyes} 
                 alt="Toggle Password Visibility" 
@@ -201,28 +190,31 @@ interface UserFormInput {
               </div>
               {errors.confirm_password && <p className="text-red-600 text-[13px] font-medium">{errors.confirm_password.message}</p>}
           </div>
-          <div className="flex flex-row gap-[30px] max-sm:mr-auto text-gray-500 items-center mt-5 mr-[7.5rem]">
-             <h1 className="text-[16px] font-semibold text-gray-800">Gender 
-             <span className="text-gray-800">*</span></h1>
-          <div className="flex items-center gap-2">
-              <input type="radio" value="Female" 
-              {...register('gender', { required: true })} 
-              className="min-h-8 border-2 rounded-lg" />
-              <label className="text-base font-medium text-[14px]">Female</label>
-          </div>
-          <div className="flex items-center gap-2">
-              <input type="radio" value="Male" 
-              {...register('gender', { required: true })} 
-              className="min-h-8 border-2 rounded-lg" />
-              <label className="text-base font-medium text-[14px]">Male</label>
-          </div>
-          <div className="flex items-center gap-2">
-              <input type="radio" value="Other" 
-              {...register('gender', { required: true })} 
-              className="min-h-8 border-2 rounded-lg" />
-              <label className="text-base font-medium text-[14px]">Other</label>
+          <div className="flex flex-row gap-[30px] max-sm:mr-auto text-gray-500 items-center mt-5 mr-[7.5rem]">   
+            <h1 className="text-[16px] font-semibold text-gray-800">Gender 
+            <span className="text-gray-800">*</span></h1>
+          <RadioButton
+              value="Male"
+              label="Male"
+              name="gender"
+              register={register}
+              errors={errors}
+            />
+            <RadioButton
+              value="Female"
+              label="Female"
+              name="gender"
+              register={register}
+              errors={errors}
+            />
+            <RadioButton
+              value="Other"
+              label="Other"
+              name="gender"
+              register={register}
+              errors={errors}
+            />
             </div>
-          </div>
           <div className="flex max-sm:mr-auto flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem]">
               <input type="checkbox" 
               {...register('agree', { required: true })} 
@@ -244,7 +236,6 @@ interface UserFormInput {
           <ToastContainer
               position="top-right"
               autoClose={5000}
-              className={`h-[25%] flex flex-wrap content-start gap-2`} 
             />
           </div>
           </div>
