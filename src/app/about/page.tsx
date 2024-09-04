@@ -51,9 +51,11 @@ export default function AboutUs() {
   return (
     <div className={`w-full flex flex-col `}>
       <div
-        className="w-full bg-[#FBFBFB] pl-8"
+        className="w-full pl-8"
         style={{
           backgroundImage: `url(${Left.src}), url(${Right.src})`,
+          paddingBottom:'25px',
+          
         }}
       >
         <h1
