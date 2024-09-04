@@ -57,9 +57,14 @@ function Contact() {
       return;
     }
 
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Message:", message);
+    const formData = {
+      name,
+      email,
+      message,
+    };
+
+    console.log("Form Data:", formData);
+
     setName("");
     setEmail("");
     setMessage("");
@@ -71,20 +76,19 @@ function Contact() {
   };
 
   return (
+  
     <div
-      className="w-full min-h-[800px] bg-[#FBFBFB] flex justify-center items-center mt-[50px]"
+      className=" bg-[#FBFBFB] flex justify-center items-center mt-[50px] W-full h-auto pb-[5%]  "
       style={{
         backgroundImage: `url(${Left.src}), url(${Right.src})`,
-        backgroundPosition: "left top, right top",
-        backgroundRepeat: "no-repeat, no-repeat",
       }}
     >
-      <div className="w-full max-w-[906px] p-4 flex flex-col gap-[30px]">
+      <div className="w-full max-w-[906px]  flex flex-col gap-[30px] mt-[8%]">
         <h1 className="font-semibold text-[24px] md:text-[34px] leading-[30px] md:leading-[57.8px] text-center">
           Contact Us
         </h1>
         <form
-          className="flex flex-col gap-[20px] md:gap-[30px]"
+          className="flex flex-col gap-[20px] md:gap-[30px  "
           onSubmit={handleSubmit}
         >
           <div className="w-full flex flex-col gap-[10px]">
@@ -174,6 +178,7 @@ function Contact() {
         </form>
       </div>
     </div>
+  
   );
 }
 

@@ -3,22 +3,17 @@ import Right from "../../images/Right.png";
 
 function Terms() {
   return (
-    <div className="w-full px-0 ">
-      <div
-        className="w-full min-h-screen bg-[#FBFBFB] flex justify-center items-center"
-        style={{
-          backgroundImage: `url(${Left.src}), url(${Right.src})`,
-          backgroundPosition: "left top, right top",
-          backgroundRepeat: "no-repeat, no-repeat",
-          backgroundSize: "auto, auto",
-        }}
-      >
-        <div className="w-full py-[60px] px-0 flex flex-col items-center">
-          <h1 className="font-semibold leading-[57.8px] text-center text-[34px] mt-[5%]">
+   
+    <div className="w-full px-[20px] py-0 text-justify box-border"  >
+       
+         
+          <div className="w-full px-[20px] py-0 text-justify" style={{
+      backgroundImage: `url(${Left.src}), url(${Right.src})`,
+    }}>
+       <h1 className="font-semibold sm:pt-[15%] max-sm:pt-[15%] md:pt-[15%] lg:pt-[8%] text-center text-[34px] mt-[1%]">
             Terms of Use
           </h1>
-          <div className="w-full max-w-[1200px] px-[20px] py-0">
-            <section className="mb-8">
+            <section className="mb-8 w-5/6 m-auto pr-2">
               <h2 className="text-2xl font-semibold mb-4 text-[24px] leading-[40.8px] pt-[30px]">
                 Who we are
               </h2>
@@ -30,7 +25,7 @@ function Terms() {
                 volutpat ipsum morbi diam felis.
               </p>
             </section>
-            <section className="mb-8">
+            <section className="mb-8 w-5/6 m-auto pr-2">
               <h2 className="text-2xl font-semibold mb-4">
                 What personal data we receive or collect from you
               </h2>
@@ -50,12 +45,15 @@ function Terms() {
                 mattis a leo mi. Sed dictumst morbi ante feugiat. Natoque
                 vivamus rhoncus at sed sed a.
               </p>
-            </section>
-            <section className="mb-8">
+            </section> </div>
+            <div className="w-full px-[20px] py-0 text-justify">
+
+       
+            <section className="mb-8 w-5/6 m-auto pr-2">
               <h3 className="font-bold text-[16px] leading-[25.6px]">
                 Profile Information
               </h3>
-              <p className="mb-4 font-medium text-[16px] leading-[25.6px] mt-[30px]">
+              <p className="mb-4 font-medium text-[16px] leading-[25.6px] mt-[30px] ">
                 After you create an account, you may choose to provide
                 additional information on your Student Profile.
               </p>
@@ -78,11 +76,11 @@ function Terms() {
                 auctor non. Tempus tempus eros turpis egestas.
               </p>
             </section>
-            <section className="mb-8">
+            <section className="mb-8 w-5/6 m-auto pr-2">
               <h3 className="text-xl mb-2 text-[16px] font-bold leading-[25.6px]">
                 Cookies
               </h3>
-              <p className="mb-4 font-medium text-[16px] leading-[25.6px] mt-[30px]">
+              <p className="mb-4 font-medium text-[16px] leading-[25.6px] mt-[30px] ">
                 If you leave a comment on our site you may opt-in to save your
                 name, email address and website in cookies. These are for your
                 convenience so that you do not have to fill in your details
@@ -102,7 +100,7 @@ function Terms() {
                 removed.
               </p>
             </section>
-            <section className="mb-8">
+            <section className="mb-8 w-5/6 m-auto pr-2">
               <h3 className="text-xl mb-2 text-[16px] font-bold leading-[25.6px] ">
                 How we use the information we receive or collect
               </h3>
@@ -112,7 +110,7 @@ function Terms() {
                 as data we derive or infer from combinations of the foregoing,
                 for a va purposes such as:
               </p>
-              <section className="mb-8 mt-[30px]">
+              <section className="mb-8 ">
                 <ul className="mb-4 font-medium text-[16px] leading-[25.6px] pl-[20px] list-disc">
                   <li>
                     To facilitate the creation of and secure your account on the
@@ -137,8 +135,7 @@ function Terms() {
             </section>
           </div>
         </div>
-      </div>
-    </div>
+     
   );
 }
 
