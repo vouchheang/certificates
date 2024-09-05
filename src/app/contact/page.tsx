@@ -88,7 +88,7 @@ function Contact() {
           Contact Us
         </h1>
         <form
-          className="flex flex-col gap-[20px] md:gap-[30px  "
+          className="flex flex-col gap-[20px] md:gap-[30px] pl-[50px] pr-[50px] "
           onSubmit={handleSubmit}
         >
           <div className="w-full flex flex-col gap-[10px]">
