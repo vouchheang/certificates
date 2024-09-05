@@ -192,6 +192,6 @@ export default function Info() {
           </li>
         </ul>
       </div>
-    </div>
+    </div>        
   );
 }
