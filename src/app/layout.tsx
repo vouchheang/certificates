@@ -25,7 +25,9 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en">
       <body className={quicksand.className}>
         <Header />
-        <div id="detail">{children}</div>
+        <div id="detail">
+          {children}
+        </div>
         <Info />
         <Footer />
       </body>
