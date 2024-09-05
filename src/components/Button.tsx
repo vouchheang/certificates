@@ -2,14 +2,18 @@ import React from "react";
 
 interface ButtonProps {
   label: string;
+  className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-const Button: React.FC<ButtonProps> = ({ label }) => {
+const Button: React.FC<ButtonProps> = ({ label, className ='',type = 'button'}) => {
   return (
-    <button className="w-[229px] h-[52px] px-[30px] py-[14px] rounded-[6px] bg-[rgba(0,132,76,1)]">
+    <button className={className} type={type}>
       <p className="text-sm text-white font-semibold">{label}</p>
     </button>
   );
 };
 
 export default Button;
+
+
