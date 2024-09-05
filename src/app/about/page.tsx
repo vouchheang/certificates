@@ -59,17 +59,17 @@ export default function AboutUs() {
         }}
       >
         <h1
-          className={`font-Quicksand text-[34px] font-bold text-center max-sm:pt-[15%] sm:pt-[15%] md:pt-[10%] lg:pt-[8%] xl:pt-[6%]`}
+          className={`font-Quicksand text-[34px] font-bold text-center  max-sm:pt-[16%] max-sm:p-[4%] sm:pt-[15%] md:pt-[10%] lg:pt-[8%] xl:pt-[6%]`}
         >
           {aboutUsData[0]?.attributes.title}
         </h1>
 
-        <h3 className="font-Quicksand text-[32px] font-bold text-left max-sm:pl-2 lg:p-2">
+        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] max-sm:pl-2 lg:p-2 max-sm:text-[27px] sm:text-[30px] sm:pl-2">
           {aboutUsData[0]?.attributes.paragraph[0].heading}
         </h3>
-        <div className="flex-1 mt-8 pl-2.5 max-sm:pr-8 sm:pr-8 md:pr-8">
+        <div className="flex-1 pl-2.5 max-sm:pr-8 sm:pr-8 md:pr-8">
           <p className="mb-3 text-justify">
-            <span className="text-[36px] leading-[45px]">
+            <span className="text-[36px] max-sm:text-[30px] sm:text-[32px]">
               {aboutUsData[0]?.attributes.span}
             </span>{" "}
             {""}
@@ -87,7 +87,7 @@ export default function AboutUs() {
         </div>
       </div>
       <div className="flex-1 mt-8 pl-8 max-sm:pr-8 sm:pr-8 md:pr-8">
-        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] max-sm:pl-2 lg:p-2">
+        <h3 className="font-Quicksand text-[32px] font-bold leading-[40px] max-sm:pl-2 lg:p-2 max-sm:text-[27px] sm:text-[30px]">
           {aboutUsData[0]?.attributes.paragraph[4].heading}
         </h3>
         <div className="font-Quicksand text-[16px] leading-[20px] pt-2 max-sm:p-2 max-sm:text-[15px] lg:p-2">
