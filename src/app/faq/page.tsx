@@ -168,7 +168,7 @@ export default function FAQPage() {
                      src={`http://178.128.19.249${otherFaqData[0]?.attributes.button[1].image.data.attributes.url}`}
                      width={otherFaqData[0]?.attributes.button[1].image.data.attributes.width}
                      height={otherFaqData[0]?.attributes.button[1].image.data.attributes.height}
-                className="text-[#717171] absolute ml-6 mt-4"
+                className="text-[#717171] absolute ml-6 mt-5"
               />
             </div>
           </div>
