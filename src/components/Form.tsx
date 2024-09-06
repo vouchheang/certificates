@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { LuEye } from 'react-icons/lu';
 import google from '../images/google.png';
 
 function Form(){

@@ -1,15 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import picture from "../../images/picture.png";
-import Header from "@/components/Header";
 import google from "../../images/google.png";
 import Background from "../../images/background.png";
-import Footer from "@/components/Footer";
-import Background1 from "../../images/bg1.png";
 export default function LoginPage() {
   return (
     <div className="flex flex-col">
-      <Header />
       <div className="flex flex-1 bg-gray-50">
         <div
           className="w-[1370px] h-[951px] p-[90px_40px] gap-[80px] lg:w-2/3 flex flex-col"
@@ -125,7 +121,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
