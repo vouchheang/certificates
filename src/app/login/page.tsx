@@ -29,9 +29,11 @@ export default function LoginPage() {
   const PasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setPasswordValue(e.target.value);
   };
+
   const ClickPassword = () => {
     setShowPassword(!showPassword);
   };
+
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
@@ -44,29 +46,34 @@ export default function LoginPage() {
       checkbox: isChecked,
     };
     console.log("Password Data:", passwordData);
+    setEmail('');
+    setPasswordValue('');
+    setIsChecked(false);
+    setEmailValid(null);
   };
+
   const isButtonEnabled = emailValid && passwordValue.length > 0 && isChecked;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="flex flex-1 bg-gray-50 mt-[5rem]">
+      <div className="flex flex-1 bg-gray-50">
         <div
-          className="w-[1370px] h-[951px] p-[90px_40px] gap-[80px] lg:w-2/3 flex flex-col max-md:hidden"
+          className="lg:w-2/3 hidden lg:flex flex-col justify-center p-8"
           style={{ backgroundImage: `url(${Background.src})` }}
         >
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 lg:mt-8">
               Quick and easy way to generate certificates <br />
               by documents and templates
             </h2>
-            <p className="text-gray-700 mb-8">
+            <p className="text-gray-700 mt-5">
               Lorem ipsum dolor sit amet consectetur. Ornare ac at urna amet
-              scelerisque quam. Dolor vulputate consequat eu tortor ullamcorper
-              sit vestibulum diam elit. Eget vivamus consequat nisl ut commodo
-              sem. Aliquam ultrices aenean vestibulum aliquam consequat.
+              scelerisque quam. Dolor vulputate consequat eu tortor ullamcorper sit
+              vestibulum diam elit. Eget vivamus consequat nisl ut commodo sem.
+              Aliquam ultrices aenean vestibulum aliquam consequat.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-5">
               <Image
                 src={picture}
                 alt="picture"
@@ -75,18 +82,16 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-        <div className="lg:w-1/3 w-full bg-[#FFFFFF] items-center font-Quicksand shadow-lg h-auto flex flex-col justify-between p-10">
-          <div className="w-full max-sm:h-[610px]">
-            <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+
+        <div className="lg:w-1/3 w-full bg-white flex flex-col justify-center items-center font-Quicksand shadow-lg p-10 max-sm:p-5">
+          <div className="w-full max-sm:h-auto">
+            <h2 className="text-2xl font-bold lg:mt-[3rem] text-center max-sm:text-xl">Login</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email Address <span className="text-red-600">*</span>
                 </label>
-                <div className="flex items-center mt-1 w-full pl-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm h-[50px]">
+                <div className="flex items-center mt-1 w-full pl-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm h-[50px] max-sm:h-[45px]">
                   <input
                     type="email"
                     id="email"
@@ -94,7 +99,7 @@ export default function LoginPage() {
                     value={email}
                     required
                     onChange={EmailChange}
-                    className="flex-grow pl-3 pr-3 rounded-lg outline-none"
+                    className="flex-grow pl-3 pr-3 rounded-lg outline-none max-sm:pl-1"
                     placeholder="example@gmail.com"
                   />
                   {emailValid !== null && (
@@ -109,13 +114,10 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password <span className="text-red-600">*</span>
                 </label>
-                <div className="flex items-center mt-1 w-full pl-5 border border-gray-300 rounded-md shadow-sm sm:text-sm h-[50px]">
+                <div className="flex items-center mt-1 w-full pl-5 border border-gray-300 rounded-md shadow-sm sm:text-sm h-[50px] max-sm:h-[45px]">
                   <input
                     type={showPassword ? "text" : "password"}
                     id="password"
@@ -123,7 +125,7 @@ export default function LoginPage() {
                     value={passwordValue}
                     required
                     onChange={PasswordChange}
-                    className="flex-grow pl-3 pr-3 rounded-lg outline-none"
+                    className="flex-grow pl-3 pr-3 rounded-lg outline-none max-sm:pl-1"
                     placeholder="Enter your password"
                   />
                   <Image
@@ -135,8 +137,8 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:justify-between items-center">
-                <div className="flex items-center mb-4 md:mb-0 sm:flex-row sm:justify-between">
+              <div className="flex flex-col md:flex-row md:justify-between items-center max-sm:flex-col max-sm:gap-2">
+                <div className="flex items-center mb-4 md:mb-0">
                   <input
                     type="checkbox"
                     id="agree"
@@ -145,18 +147,11 @@ export default function LoginPage() {
                     onChange={handleCheckboxChange}
                     className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                   />
-                  <label
-                    htmlFor="agree"
-                    className="ml-2 text-sm text-gray-900"
-                  >
-                    I agree with <span className="text-red-600"><a href="#">privacy </a></span>
-                    and <span className="text-red-600"><a href="#">policy</a></span>
+                  <label htmlFor="agree" className="ml-2 text-sm text-gray-900">
+                    I agree with <span className="text-red-600"><a href="#">privacy</a></span> and <span className="text-red-600"><a href="#">policy</a></span>
                   </label>
                 </div>
-                <a
-                  href="/forgotpassword"
-                  className="text-sm text-[#000000] hover:underline"
-                >
+                <a href="/forgot-password" className="text-sm text-[#000000] hover:underline">
                   Forgot Password?
                 </a>
               </div>
@@ -164,7 +159,7 @@ export default function LoginPage() {
               <div>
                 <button
                   type="submit"
-                  className={`w-full h-[52px] flex justify-center py-4 px-4 rounded-md shadow-sm text-sm font-Quicksand mt-7 ${
+                  className={`w-full h-[52px] flex justify-center py-4 px-4 rounded-md shadow-sm text-sm font-Quicksand mt-7 max-sm:h-[45px] ${
                     isButtonEnabled
                       ? "bg-[#00844C] text-white"
                       : "bg-gray-400 text-gray-200"
@@ -175,13 +170,12 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              <div className="h-[98px]">
-                <div className="flex items-center mt-[26rem] justify-center w-full mb-5 max-sm:mt-[5rem]">
+              <div className="lg:pt-[300px] space-y-3">
+                <div className="flex items-center justify-center">
                   <div className="w-20 border-t border-gray-300"></div>
                   <span className="mx-4 text-gray-500">Or</span>
                   <div className="w-20 border-t border-gray-300"></div>
                 </div>
-
                 <ButtonContinue />
               </div>
             </form>

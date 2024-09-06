@@ -42,7 +42,7 @@ export default function UpdatePassword() {
     if (password === confirmPassword) {
       toast.success("You have successfully updated your password.");
       setTimeout(() => {
-        router.push("/loginpage");
+        router.push("/login");
       }, 2000);
     } else {
       toast.error("Passwords do not match.");

@@ -44,7 +44,7 @@ export default function VerifyOTP() {
     }
     console.log(passwordData);
     if (isOtpValid) {
-      router.push('/updatepassword'); 
+      router.push('/update-password'); 
     } else {
       toast.error("You have inputted a wrong OTP. Please recheck the code sent to your email.");
     }

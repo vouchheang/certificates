@@ -31,7 +31,7 @@ export default function ForgotPassword() {
     };
     console.log("Password-Data", passwordData);
     if (emailValue) {
-      router.push("/verifyOTP");
+      router.push("/verify-OTP");
     } else {
       console.log("Invalid email address");
     }

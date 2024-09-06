@@ -11,7 +11,7 @@ export default function Footers (){
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="/FAQ" className="text-[#00844C] hover:text-[#005a40]">
+                <a href="/faq" className="text-[#00844C] hover:text-[#005a40]">
                   FAQ
                 </a>
               </li>

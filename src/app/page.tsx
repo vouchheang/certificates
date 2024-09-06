@@ -27,7 +27,7 @@ export default function HomePage() {
       >
         <div className="w-full max-w-screen-xl px-4 py-10 mx-auto flex flex-col items-center mt-[3.5rem]">
           <div className="text-center max-md:mb-7 lg:mb-7 ">
-            <h2 className=" sm:text-3xl lg:text-2.5xl font-Quicksand text-gray-900 font-bold lg:space-y-4 max-md:text-2xl">
+            <h2 className=" sm:text-2xl lg:text-2xl font-Quicksand text-gray-900 font-bold lg:space-y-4 max-md:text-1xl">
               Quick and easy way to generate certificates <br />
               <span className="block  sm:mt-0">
                 by documents and templates
