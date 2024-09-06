@@ -98,52 +98,53 @@ export default function Info() {
           enable them to manage their academic operations through our school
           management suite.
         </p>
-        <div className="flex space-x-4">
-          <Image src={Facebook} alt="Facebook" className="w-[24px] h-[24px]" />
-          <Image
-            src={Instagram}
-            alt="Instagram"
-            className="w-[24px] h-[24px]"
-          />
-          <Image src={Telegram} alt="Telegram" className="w-[24px] h-[24px]" />
+        <div className="flex gap-4">
+          <Image src={Facebook} alt="#" />
+          <Image src={Instagram} alt="#" />
+          <Image src={Telegram} alt="#" />
         </div>
       </div>
-
-      <div className="lg:w-1/3 mt-8 lg:mt-0">
-        <h2 className="text-xl font-semibold text-gray-800 opacity-80 mb-4">
-          Find Us
-        </h2>
-        <ul className="space-y-2">
-          <li className="flex items-center text-gray-600">
-            <Image
-              src={Map}
-              alt="Map"
-              className="w-[20px] h-[20px] opacity-50"
-            />
-            <span className="ml-3">
-              House #5 St 550, Phnom Penh 12151, Cambodia
-            </span>
-          </li>
-          <li className="flex items-center text-gray-600">
-            <Image
-              src={Add}
-              alt="Email"
-              className="w-[18px] h-[18px] opacity-50"
-            />
-            <span className="ml-3">Contact@sala.co</span>
-          </li>
-          <li className="flex items-center text-gray-600">
-            <Image
-              src={Call}
-              alt="Phone"
-              className="w-[20px] h-[20px] opacity-50"
-            />
-            <span className="ml-3">
-              +855 10 240 042 <br />
-              +855 12 240 042
-            </span>
-          </li>
-        </ul>
+      <div className="w-full md:w-auto">
+        <div className="w-full md:w-[525px] h-auto ml-0 md:ml-5">
+          <h2 className="font-Quicksand text-black opacity-40 text-xl font-bold mb-4 md:mb-0">
+            Find Us
+          </h2>
+          <div className="w-full md:w-[380px] h-auto mt-4">
+            <ul>
+              <li className="flex gap-2 mb-4">
+                <Image
+                  src={Map}
+                  alt="#"
+                  className="opacity-50 w-[22px] h-[22px]"
+                />
+                <a href="#" className="text-black font-[15px]">
+                  House #5 St 550, Phnom Penh 12151, Cambodia
+                </a>
+              </li>
+              <li className="flex gap-2 mb-4">
+                <Image
+                  src={Add}
+                  alt="#"
+                  className="opacity-40 w-[18px] h-[18px] mt-1"
+                />
+                <a href="#" className="text-black font-[15px]">
+                  Contact@sala.co
+                </a>
+              </li>
+              <li className="flex gap-2">
+                <Image
+                  src={Call}
+                  alt="#"
+                  className="opacity-50 w-[22px] h-[22px]"
+                />
+                <a href="#" className="text-black font-[15px]">
+                  +855 10 240 042 <br />
+                  +855 12 240 042
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>        
   );
