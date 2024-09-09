@@ -165,8 +165,8 @@ export default function FAQPage() {
               className={`max-md:w-[350px] absolute lg:w-[696px] xl:w-[800px]  h-[57px] border border-[${faqData[0]?.attributes.button[1].color}] rounded-[6px] p-4 pl-10`}
             />
             <div className="w-[18px] h-[18px] ">
-              <img
-                src={`http://178.128.19.249${otherFaqData[0]?.attributes.button[1].image.data.attributes.url}`}
+              <Image
+                src={`http://178.128.19.249${otherFaqData[0]?.attributes.button[1].image.data.attributes.url}`} alt="img"
                 width={
                   otherFaqData[0]?.attributes.button[1].image.data.attributes
                     .width
@@ -306,7 +306,7 @@ export default function FAQPage() {
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="lg:w-[550px] lg:h-[437px] md:ml-[3rem] mt-[5rem]">
-              <img
+              <Image
                 src={`http://178.128.19.249${faqData[0]?.attributes.picture.data.attributes.url}`}
                 width={faqData[0]?.attributes.picture.data.attributes.width}
                 height={faqData[0]?.attributes.picture.data.attributes.height}
