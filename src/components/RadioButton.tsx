@@ -1,5 +1,5 @@
-import React from 'react';
-import { UseFormRegister, FieldErrors } from 'react-hook-form';
+import React from "react";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 
 interface RadioButtonProps {
   value: string;
@@ -9,7 +9,13 @@ interface RadioButtonProps {
   errors: FieldErrors;
 }
 
-const RadioButton: React.FC<RadioButtonProps> = ({ value, label, name, register, errors }) => {
+const RadioButton: React.FC<RadioButtonProps> = ({
+  value,
+  label,
+  name,
+  register,
+  errors,
+}) => {
   return (
     <div className="flex items-center gap-2">
       <input

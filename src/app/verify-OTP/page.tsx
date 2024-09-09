@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { useRouter } from 'next/navigation'; 
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from "next/navigation";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function VerifyOTP() {
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
@@ -37,16 +37,18 @@ export default function VerifyOTP() {
     alert("OTP has been resent!");
   };
 
-  const handleSubmit = (e:FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const passwordData ={
-      otp:otp,
-    }
+    const passwordData = {
+      otp: otp,
+    };
     console.log(passwordData);
     if (isOtpValid) {
-      router.push('/update-password'); 
+      router.push("/update-password");
     } else {
-      toast.error("You have inputted a wrong OTP. Please recheck the code sent to your email.");
+      toast.error(
+        "You have inputted a wrong OTP. Please recheck the code sent to your email."
+      );
     }
   };
 

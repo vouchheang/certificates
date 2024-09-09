@@ -1,7 +1,10 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmarkCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faXmarkCircle,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface InputFieldProps {
   label: string;
@@ -25,7 +28,11 @@ const Input: React.FC<InputFieldProps> = ({
   return (
     <div className="flex flex-col text-[13px]">
       <label className="mt-3 text-base font-medium">{label}</label>
-      <div className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] ${errors[name] && " border-red-400"}`}>
+      <div
+        className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] ${
+          errors[name] && " border-red-400"
+        }`}
+      >
         <input
           type="text"
           {...register(name, {
@@ -37,12 +44,24 @@ const Input: React.FC<InputFieldProps> = ({
           placeholder={placeholder}
         />
         {errors[name] ? (
-          <FontAwesomeIcon icon={faXmarkCircle} className="text-red-600 mr-5 size-4" />
-        ) : value && (
-          <FontAwesomeIcon icon={faCheckCircle} className="text-[#60E354] mr-5 size-4" />
+          <FontAwesomeIcon
+            icon={faXmarkCircle}
+            className="text-red-600 mr-5 size-4"
+          />
+        ) : (
+          value && (
+            <FontAwesomeIcon
+              icon={faCheckCircle}
+              className="text-[#60E354] mr-5 size-4"
+            />
+          )
         )}
       </div>
-      {errors[name] && <p className="text-red-600 text-[13px] font-medium">This field is required.</p>}
+      {errors[name] && (
+        <p className="text-red-600 text-[13px] font-medium">
+          This field is required.
+        </p>
+      )}
     </div>
   );
 };

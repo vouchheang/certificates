@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
-import logo from "../images/ logoh.png";
 
 interface HeaderData {
   attributes: {
@@ -79,9 +77,16 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full bg-[#FFFFFF] py-6 max-sm:py-4 shadow-sm z-50 max-sm:h-[4rem]">
       <div className="mx-auto flex items-center justify-between px-4">
         <div className="w-[140px] h-[25px]">
-          <Image src={logo} alt="Logo" className="w-full h-auto" />
+          <a href="/">
+            <img
+              src={`http://178.128.19.249${headerData[0]?.attributes.logo.data.attributes.url}`}
+              alt="Logo"
+              width={headerData[0]?.attributes.logo.data.attributes.width}
+              height={headerData[0]?.attributes.logo.data.attributes.height}
+              className="w-full h-auto"
+            />
+          </a>
         </div>
-
         <button
           className="sm:hidden text-[#717171] "
           onClick={toggleMenu}
@@ -110,32 +115,35 @@ export default function Header() {
             }`}
         >
           <a
-            href="/"
+            href={headerData[0]?.attributes.navbar[0].path}
             className="text-[#717171] px-4 py-2 sm:px-0 sm:py-0 text-center sm:text-left"
             onClick={handleLinkClick}
           >
-            Home
+            {headerData[0]?.attributes.navbar[0].label}
           </a>
           <a
-            href="/faq"
+            href={headerData[0]?.attributes.navbar[1].path}
             className="text-[#717171] px-4 py-2 sm:px-0 sm:py-0 text-center sm:text-left"
             onClick={handleLinkClick}
           >
-            FAQ
+            {headerData[0]?.attributes.navbar[1].label}
           </a>
           <a
-            href="/about"
+            href={headerData[0]?.attributes.navbar[2].path}
             className="text-[#717171] px-4 py-2 sm:px-0 sm:py-0 text-center sm:text-left"
             onClick={handleLinkClick}
           >
-            About Us
+            {headerData[0]?.attributes.navbar[2].label}
           </a>
-          <button
-            className="bg-[#00844C] text-white rounded-[6px] w-full sm:w-[73px] h-[46px] px-2 py-1 sm:px-0 sm:py-0 mt-4 sm:mt-0 mx-auto sm:mx-0"
-            onClick={handleLinkClick}
-          >
-            Login
-          </button>
+          <a href="/login">
+            <button
+              typeof={headerData[0]?.attributes.button.type}
+              className={`bg-[${headerData[0]?.attributes.button.color}] text-white rounded-[6px] w-full sm:w-[73px] h-[46px] px-2 py-1 sm:px-0 sm:py-0 mt-4 sm:mt-0 mx-auto sm:mx-0`}
+              onClick={handleLinkClick}
+            >
+              {headerData[0]?.attributes.button.label}
+            </button>
+          </a>
         </nav>
       </div>
     </header>

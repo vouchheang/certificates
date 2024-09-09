@@ -1,9 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Background from "../images/background.png";
-import Footer from "@/components/Footer";
 import folder from "../images/folders.png";
-import Button from "@/components/Button";
+import Button from "../components/Button";
 import shieldcheck from "../images/shield-check.png";
 import filereport from "../images/file-report.png";
 import filecertificate from "../images/file-certificate.png";
@@ -12,15 +11,11 @@ import image5 from "../images/image 5.png";
 import image7 from "../images/image 7.png";
 import image9 from "../images/image 9.png";
 import image16 from "../images/image 16.png";
-import Info from "@/components/Info";
-import Header2 from "@/components/Header2";
-import Footers from "@/components/Footers";
+import Sitemap from "../components/Sitemap";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      <Header2/>
-
       <div
         className="bg-gray-50"
         style={{ backgroundImage: `url(${Background.src})` }}
@@ -29,9 +24,7 @@ export default function HomePage() {
           <div className="text-center max-md:mb-7 lg:mb-7 ">
             <h2 className=" sm:text-2xl lg:text-2xl font-Quicksand text-gray-900 font-bold lg:space-y-4 max-md:text-1xl">
               Quick and easy way to generate certificates <br />
-              <span className="block  sm:mt-0">
-                by documents and templates
-              </span>
+              <span className="block  sm:mt-0">by documents and templates</span>
             </h2>
           </div>
           <div className="flex justify-center w-full max-w-4xl bg-[#00844C] bg-opacity-10 rounded-md shadow-sm border-dashed border-green-500 border-2 p-6">
@@ -96,7 +89,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
         <div className="w-full bg-white py-10 text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-Quicksand text-[#222222] font-bold mb-4">
             Our Sponsors
@@ -115,10 +107,8 @@ export default function HomePage() {
             <Image src={image7} alt="Sponsor 5" className="w-24 h-24" />
           </div>
         </div>
-        <Footers/>
       </div>
-      <Info />
-      <Footer />
+      <Sitemap />
     </div>
   );
 }

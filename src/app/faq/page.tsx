@@ -2,12 +2,6 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Image from "next/image";
 import background from "../../images/background.png";
-import pdf from "../../images/Group.png";
-import image19 from "../../images/image 19.png";
-import Info from "@/components/Info";
-import Footer from "@/components/Footer";
-import logo from "../../images/Frame 42.png";
-import Header2 from "@/components/Header2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleCheck,
@@ -109,9 +103,9 @@ export default function FAQPage() {
 
     console.log("Form Data:", formData);
 
-    // Clear the input fields after submission
-    setEmail(""); // Clear email input
-    setDescription(""); // Clear description input
+   
+    setEmail(""); 
+    setDescription(""); 
   };
 
   useEffect(() => {
@@ -156,7 +150,6 @@ export default function FAQPage() {
       className="bg-gray-50 lg:mt-[4rem]"
       style={{ backgroundImage: `url(${background.src})` }}
     >
-      <Header2 />
 
       <div className="py-12 max-md:mt-[3.5rem] flex justify-center">
         <div className="container text-center px-4">
@@ -358,7 +351,7 @@ export default function FAQPage() {
                     className="font-Quicksand"
                   >
                     {faqData[0]?.attributes.form[1].label}{" "}
-                    <span className="text-red-600">*</span>
+                   
                   </label>
                   <textarea
                     id="description"
@@ -388,9 +381,6 @@ export default function FAQPage() {
           </div>
         </div>
       </div>
-
-      <Info />
-      <Footer />
     </div>
   );
 }

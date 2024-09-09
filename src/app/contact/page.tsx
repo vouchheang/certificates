@@ -96,7 +96,7 @@ function Contact() {
               className="font-semibold text-[14px] leading-[17.5px]"
               htmlFor="name"
             >
-              Name
+              Name *
             </label>
             <input
               className={`w-full h-[50px] font-medium text-[12px] leading-[17.5px] rounded-[6px] border-[1px] p-[18px_20px] ${
@@ -118,7 +118,7 @@ function Contact() {
               className="font-semibold text-[14px] leading-[17.5px]"
               htmlFor="email"
             >
-              Email
+              Email *
             </label>
             <input
               className={`w-full h-[50px] font-medium text-[12px] leading-[17.5px] rounded-[6px] border-[1px] p-[18px_20px] ${
@@ -142,7 +142,7 @@ function Contact() {
               className="font-semibold text-[14px] leading-[17.5px]"
               htmlFor="message"
             >
-              Message
+              Message *
             </label>
             <textarea
               className={`w-full min-h-[185px] h-auto font-medium text-[12px] leading-[17.5px] rounded-[6px] border-[1px] p-[18px_20px] resize-y ${

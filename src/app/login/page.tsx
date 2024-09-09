@@ -3,12 +3,14 @@
 import Image from "next/image";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import picture from "../../images/picture.png";
-import Header from "@/components/Header";
+import Header from "@/components/Header2";
 import Background from "../../images/background.png";
-import Footer from "@/components/Footer";
 import ButtonContinue from "@/components/ButtonContinue";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faXmarkCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import eye from "../../images/eye.png";
 import eyes from "../../images/eyes.png";
 
@@ -46,8 +48,8 @@ export default function LoginPage() {
       checkbox: isChecked,
     };
     console.log("Password Data:", passwordData);
-    setEmail('');
-    setPasswordValue('');
+    setEmail("");
+    setPasswordValue("");
     setIsChecked(false);
     setEmailValid(null);
   };
@@ -56,7 +58,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header btnPath="/register" />
       <div className="flex flex-1 bg-gray-50">
         <div
           className="lg:w-2/3 hidden lg:flex flex-col justify-center p-8"
@@ -69,9 +71,9 @@ export default function LoginPage() {
             </h2>
             <p className="text-gray-700 mt-5">
               Lorem ipsum dolor sit amet consectetur. Ornare ac at urna amet
-              scelerisque quam. Dolor vulputate consequat eu tortor ullamcorper sit
-              vestibulum diam elit. Eget vivamus consequat nisl ut commodo sem.
-              Aliquam ultrices aenean vestibulum aliquam consequat.
+              scelerisque quam. Dolor vulputate consequat eu tortor ullamcorper
+              sit vestibulum diam elit. Eget vivamus consequat nisl ut commodo
+              sem. Aliquam ultrices aenean vestibulum aliquam consequat.
             </p>
             <div className="flex justify-center mt-5">
               <Image
@@ -85,10 +87,15 @@ export default function LoginPage() {
 
         <div className="lg:w-1/3 w-full bg-white flex flex-col justify-center items-center font-Quicksand shadow-lg p-10 max-sm:p-5">
           <div className="w-full max-sm:h-auto">
-            <h2 className="text-2xl font-bold lg:mt-[3rem] text-center max-sm:text-xl">Login</h2>
+            <h2 className="text-2xl font-bold lg:mt-[3rem] text-center p-2 max-sm:text-xl">
+              Login
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email Address <span className="text-red-600">*</span>
                 </label>
                 <div className="flex items-center mt-1 w-full pl-5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm h-[50px] max-sm:h-[45px]">
@@ -114,7 +121,10 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password <span className="text-red-600">*</span>
                 </label>
                 <div className="flex items-center mt-1 w-full pl-5 border border-gray-300 rounded-md shadow-sm sm:text-sm h-[50px] max-sm:h-[45px]">
@@ -148,10 +158,20 @@ export default function LoginPage() {
                     className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                   />
                   <label htmlFor="agree" className="ml-2 text-sm text-gray-900">
-                    I agree with <span className="text-red-600"><a href="#">privacy</a></span> and <span className="text-red-600"><a href="#">policy</a></span>
+                    I agree with{" "}
+                    <span className="text-red-600">
+                      <a href="#">privacy</a>
+                    </span>{" "}
+                    and{" "}
+                    <span className="text-red-600">
+                      <a href="#">policy</a>
+                    </span>
                   </label>
                 </div>
-                <a href="/forgot-password" className="text-sm text-[#000000] hover:underline">
+                <a
+                  href="/forgot-password"
+                  className="text-sm text-[#000000] hover:underline"
+                >
                   Forgot Password?
                 </a>
               </div>
@@ -182,7 +202,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

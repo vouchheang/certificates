@@ -1,89 +1,42 @@
-"use client";
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "../images/Frame 42.png";
+import flag from "../images/KH-flag.png";
 
-import React, { useState, useEffect } from "react";
-import Image from 'next/image';
-import logo from '../images/Frame 42.png';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+interface HeaderProps {
+  btnPath: string;
+}
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isMenuOpen]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
-
+function Header({ btnPath }: HeaderProps) {
   return (
-    <header className="fixed top-0 w-full bg-[#FFFFFF] py-4 shadow-sm z-50 max-sm:h-[4rem]">
-      <div className="container mx-auto flex items-center justify-between px-4">
-        
-        <div className="w-[143.37px] h-[29.79px]">
-          <Image src={logo} alt="Logo" className="w-full h-auto " />
-        </div>
-       
-        <button
-          className="sm:hidden text-[#717171]"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-          aria-controls="primary-navigation"
-          aria-expanded={isMenuOpen}
-        >
-          <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} size="xl" className="max-md:ml-[1rem]" />
-        </button>
-        
-        <nav
-          id="primary-navigation"
-          className={`${
-            isMenuOpen ? "flex" : "hidden"
-          } flex-col sm:flex sm:flex-row sm:space-x-6 font-Quicksand text-[16px] leading-[20px] font-bold 
-            w-full sm:w-auto max-sm:mb-6 sm:mt-0 sm:justify-between sm:items-center
-            absolute top-0 left-0 bg-white sm:static  z-40 sm:z-auto
-            p-4 sm:p-0 sm:shadow-none shadow-lg transition-transform transform sm:translate-y-0
-            ${isMenuOpen ? "h-screen translate-y-[4rem] overflow-hidden" : "-translate-y-full h-0"}`}
-        >
-          <a
-            href="/"
-            className="text-[#717171] px-4 py-2 sm:px-0 sm:py-0 text-center sm:text-left"
-            onClick={handleLinkClick}
-          >
-            Home
-          </a>
-          <a
-            href="/faq"
-            className="text-[#717171] px-4 py-2 sm:px-0 sm:py-0 text-center sm:text-left"
-            onClick={handleLinkClick}
-          >
-            FAQ
-          </a>
-          <a
-            href="/about"
-            className="text-[#717171] px-4 py-2 sm:px-0 sm:py-0 text-center sm:text-left"
-            onClick={handleLinkClick}
-          >
-            About Us
-          </a>
-          <button
-            className="bg-[#00844C] text-white rounded-[6px] w-full sm:w-[73px] h-[46px] px-2 py-1 sm:px-0 sm:py-0 mt-4 sm:mt-0 mx-auto sm:mx-0"
-            onClick={handleLinkClick}
-          >
-            Login
-          </button>
-        </nav>
-      </div>
+    <header className="bg-white fixed top-0 left-0 w-full font-Quicksand border-b-2">
+      <nav>
+        <ul className="flex justify-end items-center space-x-6 text-xl p-3">
+          <div className="mr-auto">
+            <a href="/">
+              <Image
+                src={Logo}
+                alt="Logo"
+                width={150}
+                height={50}
+                className="max-sm:w-[80%]"
+              />
+            </a>
+          </div>
+          <div>
+            <Image src={flag} alt="Flag" width={30} height={20} />
+          </div>
+          <li>
+            <Link href={btnPath}>
+              <button className="rounded-xl border-2 bg-green-800 text-white px-4 py-2.5 text-[17px] font-medium max-sm:text-sm">
+                Sign up
+              </button>
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
 
-;
+export default Header;
