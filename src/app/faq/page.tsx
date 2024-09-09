@@ -103,9 +103,8 @@ export default function FAQPage() {
 
     console.log("Form Data:", formData);
 
-   
-    setEmail(""); 
-    setDescription(""); 
+    setEmail("");
+    setDescription("");
   };
 
   useEffect(() => {
@@ -150,7 +149,6 @@ export default function FAQPage() {
       className="bg-gray-50 lg:mt-[4rem]"
       style={{ backgroundImage: `url(${background.src})` }}
     >
-
       <div className="py-12 max-md:mt-[3.5rem] flex justify-center">
         <div className="container text-center px-4">
           <h1 className="text-2xl sm:text-3xl font-bold mb-9 font-Quicksand text-[#000000]">
@@ -165,16 +163,11 @@ export default function FAQPage() {
               className={`max-md:w-[350px] absolute lg:w-[696px] xl:w-[800px]  h-[57px] border border-[${faqData[0]?.attributes.button[1].color}] rounded-[6px] p-4 pl-10`}
             />
             <div className="w-[18px] h-[18px] ">
-              <img
+              <Image
                 src={`http://178.128.19.249${otherFaqData[0]?.attributes.button[1].image.data.attributes.url}`}
-                width={
-                  otherFaqData[0]?.attributes.button[1].image.data.attributes
-                    .width
-                }
-                height={
-                  otherFaqData[0]?.attributes.button[1].image.data.attributes
-                    .height
-                }
+                width={100}
+                height={50}
+                 alt="picture"
                 className="text-[#717171] absolute ml-6 mt-5"
               />
             </div>
@@ -278,16 +271,11 @@ export default function FAQPage() {
                   key={index}
                   className="bg-white border border-gray-200 rounded-[6px] shadow-sm text-center p-6"
                 >
-                  <img
+                  <Image
                     src={`http://178.128.19.249${otherFaqData[0]?.attributes.faqCard[0].icon.data.attributes.url}`}
-                    width={
-                      otherFaqData[0]?.attributes.faqCard[0].icon.data
-                        .attributes.width
-                    }
-                    height={
-                      otherFaqData[0]?.attributes.faqCard[0].icon.data
-                        .attributes.height
-                    }
+                     alt="picture"
+                    width={100}
+                    height={50}
                     className="w-14 h-14 mx-auto mb-4"
                   />
                   <h4 className="font-Quicksand font-bold">
@@ -306,10 +294,10 @@ export default function FAQPage() {
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="lg:w-[550px] lg:h-[437px] md:ml-[3rem] mt-[5rem]">
-              <img
+              <Image
                 src={`http://178.128.19.249${faqData[0]?.attributes.picture.data.attributes.url}`}
-                width={faqData[0]?.attributes.picture.data.attributes.width}
-                height={faqData[0]?.attributes.picture.data.attributes.height}
+                width={800}
+                height={50}
                 alt="picture"
                 className="w-full h-auto rounded-lg"
               />
@@ -351,7 +339,6 @@ export default function FAQPage() {
                     className="font-Quicksand"
                   >
                     {faqData[0]?.attributes.form[1].label}{" "}
-                   
                   </label>
                   <textarea
                     id="description"

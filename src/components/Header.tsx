@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 interface HeaderData {
   attributes: {
@@ -78,11 +79,11 @@ export default function Header() {
       <div className="mx-auto flex items-center justify-between px-4">
         <div className="w-[140px] h-[25px]">
           <a href="/">
-            <img
+            <Image
               src={`http://178.128.19.249${headerData[0]?.attributes.logo.data.attributes.url}`}
               alt="Logo"
-              width={headerData[0]?.attributes.logo.data.attributes.width}
-              height={headerData[0]?.attributes.logo.data.attributes.height}
+              width={100}
+              height={50}
               className="w-full h-auto"
             />
           </a>
