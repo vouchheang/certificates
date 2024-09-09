@@ -77,15 +77,16 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full bg-[#FFFFFF] py-6 max-sm:py-4 shadow-sm z-50 max-sm:h-[4rem]">
       <div className="mx-auto flex items-center justify-between px-4">
         <div className="w-[140px] h-[25px]">
-          <img
-            src={`http://178.128.19.249${headerData[0]?.attributes.logo.data.attributes.url}`}
-            alt="Logo"
-            width={headerData[0]?.attributes.logo.data.attributes.width}
-            height={headerData[0]?.attributes.logo.data.attributes.height}
-            className="w-full h-auto"
-          />
+          <a href="/">
+            <img
+              src={`http://178.128.19.249${headerData[0]?.attributes.logo.data.attributes.url}`}
+              alt="Logo"
+              width={headerData[0]?.attributes.logo.data.attributes.width}
+              height={headerData[0]?.attributes.logo.data.attributes.height}
+              className="w-full h-auto"
+            />
+          </a>
         </div>
-
         <button
           className="sm:hidden text-[#717171] "
           onClick={toggleMenu}
@@ -134,13 +135,15 @@ export default function Header() {
           >
             {headerData[0]?.attributes.navbar[2].label}
           </a>
-          <button
-            typeof={headerData[0]?.attributes.button.type}
-            className={`bg-[${headerData[0]?.attributes.button.color}] text-white rounded-[6px] w-full sm:w-[73px] h-[46px] px-2 py-1 sm:px-0 sm:py-0 mt-4 sm:mt-0 mx-auto sm:mx-0`}
-            onClick={handleLinkClick}
-          >
-            {headerData[0]?.attributes.button.label}
-          </button>
+          <a href="/login">
+            <button
+              typeof={headerData[0]?.attributes.button.type}
+              className={`bg-[${headerData[0]?.attributes.button.color}] text-white rounded-[6px] w-full sm:w-[73px] h-[46px] px-2 py-1 sm:px-0 sm:py-0 mt-4 sm:mt-0 mx-auto sm:mx-0`}
+              onClick={handleLinkClick}
+            >
+              {headerData[0]?.attributes.button.label}
+            </button>
+          </a>
         </nav>
       </div>
     </header>

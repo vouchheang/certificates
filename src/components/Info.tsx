@@ -135,7 +135,6 @@ export default function Info() {
           </a>
         </div>
       </div>
-
       <div className="lg:w-1/3 mt-8 lg:mt-0">
         <h2 className="text-xl font-semibold text-gray-800 opacity-65 mb-4">
           {infoData[0]?.attributes.title}
