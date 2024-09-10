@@ -147,7 +147,7 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:justify-between items-center max-sm:flex max-sm:flex-row max-sm:justify-between lg:flex-col lg:gap-2">
+              <div className="xl:flex xl:flex-row md:flex-row md:justify-between items-center max-sm:flex max-sm:flex-row max-sm:justify-between lg:flex-col lg:gap-2">
                 <div className="flex items-center mb-4 md:mb-0">
                   <input
                     type="checkbox"
@@ -160,7 +160,7 @@ export default function LoginPage() {
                   <label htmlFor="agree" className="ml-2 text-sm text-gray-900">
                     I agree with{" "}
                     <span className="text-red-600">
-                      <a href="#">privacy</a>
+                      <a href="/privacy">privacy</a>
                     </span>{" "}
                     and{" "}
                     <span className="text-red-600">
@@ -170,7 +170,7 @@ export default function LoginPage() {
                 </div>
                 <a
                   href="/forgot-password"
-                  className="text-sm text-[#000000] hover:underline max-sm:mb-3.5"
+                  className="text-sm text-[#000000] hover:underline max-sm:mb-3.5 "
                 >
                   Forgot Password?
                 </a>

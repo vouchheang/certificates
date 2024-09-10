@@ -27,9 +27,9 @@ const Input: React.FC<InputFieldProps> = ({
 }) => {
   return (
     <div className="flex flex-col text-[13px]">
-      <label className="mt-3 text-base font-medium">{label}</label>
+      <label className="mt-3 text-base max-sm:text-sm font-medium">{label}</label>
       <div
-        className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] ${
+        className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
           errors[name] && " border-red-400"
         }`}
       >
