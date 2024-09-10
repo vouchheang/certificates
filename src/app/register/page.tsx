@@ -284,7 +284,7 @@ function Register() {
                   errors={errors}
                 />
               </div>
-              <div className="flex max-sm:mr-[5.2rem] flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem] max-md:mr-[18.5rem]  max-lg:mr-[24.5rem] max-xl:mr-[43rem] ">
+              <div className="flex max-sm:mr-[5.5rem] flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem] max-md:mr-[18.5rem]  max-lg:mr-[24.5rem] max-xl:mr-[43rem] ">
                 <input
                   type="checkbox"
                   {...register("agree", { required: true })}
