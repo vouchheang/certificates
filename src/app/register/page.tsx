@@ -150,7 +150,7 @@ function Register() {
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[300px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     errors.email && " border-red-400"
                   }`}
                 >
@@ -193,7 +193,7 @@ function Register() {
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[300px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     errors.create_password && " border-red-400"
                   }`}
                 >
@@ -228,7 +228,7 @@ function Register() {
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[300px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     errors.create_password && " border-red-400"
                   }`}
                 >
@@ -257,7 +257,7 @@ function Register() {
                   </p>
                 )}
               </div>
-              <div className="flex flex-row gap-[30px] max-sm:mr-[0.9rem] max-sm:gap-4 text-gray-500 items-center mt-5 mr-[7.5rem] max-md:mr-[15rem] max-lg:mr-[21rem] max-xl:mr-[40rem] ">
+              <div className="flex flex-row gap-[30px] max-sm:mr-[4.1rem] max-sm:gap-4 text-gray-500 items-center mt-5 mr-[7.5rem] max-md:mr-[15rem] max-lg:mr-[21rem] max-xl:mr-[40rem] ">
                 <h1 className="text-[16px] font-semibold max-sm:text-sm text-gray-800">
                   Gender
                   <span className="text-gray-800">*</span>
@@ -284,7 +284,7 @@ function Register() {
                   errors={errors}
                 />
               </div>
-              <div className="flex max-sm:mr-[2rem] flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem] max-md:mr-[18.5rem]  max-lg:mr-[24.5rem] max-xl:mr-[43rem] ">
+              <div className="flex max-sm:mr-[5.2rem] flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem] max-md:mr-[18.5rem]  max-lg:mr-[24.5rem] max-xl:mr-[43rem] ">
                 <input
                   type="checkbox"
                   {...register("agree", { required: true })}
@@ -300,7 +300,7 @@ function Register() {
                 <Button
                   type="submit"
                   label="Create New Account"
-                  className={`w-[470px] h-[52px] max-sm:w-[300px] max-md:w-[600px] px-[30px] py-[14px] rounded-[6px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`w-[470px] h-[52px] max-sm:w-[360px] max-md:w-[600px] px-[30px] py-[14px] rounded-[6px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     isButtonDisabled ? "bg-[#A6A6A6]" : "bg-green-600"
                   } text-white`}
                 />
