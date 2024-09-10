@@ -147,7 +147,7 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:justify-between items-center max-sm:flex max-sm:flex-row max-sm:justify-between">
+              <div className="flex flex-col md:flex-row md:justify-between items-center max-sm:flex max-sm:flex-row max-sm:justify-between lg:flex-col lg:gap-2">
                 <div className="flex items-center mb-4 md:mb-0">
                   <input
                     type="checkbox"
