@@ -110,25 +110,16 @@ export default function FAQPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response1, response2] = await Promise.all([
-          fetch(`http://178.128.19.249/api/faqs?populate=*`),
+        const [res1, res2] = await Promise.all([
+          fetch("https://strapi-dev.seksa.today/api/faqs?populate=*"),
           fetch(
-            `http://178.128.19.249/api/faqs?populate[faqCard][populate]=*&populate[button][populate]=*`
+            "https://strapi-dev.seksa.today/api/faqs?populate[faqCard][populate]=*&populate[button][populate]=*"
           ),
         ]);
 
-        if (!response1.ok || !response2.ok) {
-          throw new Error("One or more network responses were not ok");
-        }
-
-        const [data1, data2] = await Promise.all([
-          response1.json(),
-          response2.json(),
-        ]);
-
-        setFaqData(data1.data);
-        setOtherFaqData(data2.data);
-      } catch (error) {
+        setFaqData((await res1.json()).data);
+        setOtherFaqData((await res2.json()).data);
+      } catch {
         setError("Failed to fetch data");
       }
     };
@@ -164,10 +155,10 @@ export default function FAQPage() {
             />
             <div className="w-[18px] h-[18px] ">
               <Image
-                src={`http://178.128.19.249${otherFaqData[0]?.attributes.button[1].image.data.attributes.url}`}
+                src={`https://strapi-dev.seksa.today${otherFaqData[0]?.attributes.button[1].image.data.attributes.url}`}
                 width={100}
                 height={50}
-                 alt="picture"
+                alt="picture"
                 className="text-[#717171] absolute ml-6 mt-5"
               />
             </div>
@@ -211,7 +202,7 @@ export default function FAQPage() {
                     <p className="text-sm sm:text-base mt-4">
                       {index === 1
                         ? `${faqData[0]?.attributes.questionsList[0].text}`
-                        : `${faqData[0]?.attributes.questionsList[0].heading}`}
+                        : `${faqData[0]?.attributes.questionsList[0].text}`}
                     </p>
                   )}
                 </div>
@@ -248,7 +239,7 @@ export default function FAQPage() {
                     <p className="text-sm  mt-4">
                       {index === 1
                         ? `${faqData[0]?.attributes.questionsList[0].text}`
-                        : `${faqData[0]?.attributes.questionsList[0].heading}`}
+                        : `${faqData[0]?.attributes.questionsList[0].text}`}
                     </p>
                   )}
                 </div>
@@ -272,9 +263,9 @@ export default function FAQPage() {
                   className="bg-white border border-gray-200 rounded-[6px] shadow-sm text-center p-6"
                 >
                   <Image
-                    src={`http://178.128.19.249${otherFaqData[0]?.attributes.faqCard[0].icon.data.attributes.url}`}
-                     alt="picture"
-                    width={100}
+                    src={`https://strapi-dev.seksa.today${otherFaqData[0]?.attributes.faqCard[0].icon.data.attributes.url}`}
+                    alt="picture"
+                    width={500}
                     height={50}
                     className="w-14 h-14 mx-auto mb-4"
                   />
@@ -295,7 +286,7 @@ export default function FAQPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="lg:w-[550px] lg:h-[437px] md:ml-[3rem] mt-[5rem]">
               <Image
-                src={`http://178.128.19.249${faqData[0]?.attributes.picture.data.attributes.url}`}
+                src={`https://strapi-dev.seksa.today${faqData[0]?.attributes.picture.data.attributes.url}`}
                 width={800}
                 height={50}
                 alt="picture"
@@ -357,7 +348,7 @@ export default function FAQPage() {
                     <button
                       typeof={`${faqData[0]?.attributes.button[0].type}`}
                       onClick={handleSubmit}
-                      className={`bg-[${faqData[0]?.attributes.button[0].color}] text-white font-Quicksand font-bold py-4 px-6 w-full rounded-md sm:w-auto sm:px-8 sm:py-5 md:w-auto md:px-10 md:py-6 lg:w-auto lg:px-[30px] xl:w-auto xl:px-[30px]`}
+                      className={`bg-[${faqData[0]?.attributes.button[0].color}] text-white font-Quicksand font-bold w-full rounded-md sm:w-auto sm:px-8 sm:py-5 md:w-auto md:px-10 md:py-4 max-sm:py-4 lg:w-auto lg:px-[30px] xl:w-auto xl:px-[30px]`}
                     >
                       {faqData[0]?.attributes.button[0].label}
                     </button>

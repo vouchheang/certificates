@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface InfoData {
   attributes: {
@@ -48,20 +49,11 @@ export default function Info() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response] = await Promise.all([
-          fetch(
-            "http://178.128.19.249/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*"
-          ),
-        ]);
-
-        if (!response.ok) {
-          throw new Error("One or more network responses were not ok");
-        }
-
-        const [data] = await Promise.all([response.json()]);
-
-        setinfoData(data.data);
-      } catch (error) {
+        const res = await fetch(
+          "https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*"
+        );
+        setinfoData((await res.json()).data);
+      } catch {
         setError("Failed to fetch data");
       }
     };
@@ -81,11 +73,11 @@ export default function Info() {
     <div className="w-full bg-[#f9f9f9] flex flex-col lg:flex-row justify-between items-start py-10 px-8">
       <div className="flex flex-col lg:w-2/3">
         <div className="mb-6">
-          <img
-            src={`http://178.128.19.249${infoData[0]?.attributes.logo.data.attributes.url}`}
+          <Image
+            src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.logo.data.attributes.url}`}
             alt="Logo"
-            width={infoData[0]?.attributes.logo.data.attributes.width}
-            height={infoData[0]?.attributes.logo.data.attributes.height}
+            width={500}
+            height={50}
             className="w-[100px] h-auto"
           />
         </div>
@@ -95,41 +87,29 @@ export default function Info() {
         <div className="flex space-x-4">
           <a href={infoData[0]?.attributes.social[0].text}>
             {" "}
-            <img
-              src={`http://178.128.19.249${infoData[0]?.attributes.social[0].icon.data.attributes.url}`}
+            <Image
+              src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[0].icon.data.attributes.url}`}
               alt="Facebook"
-              width={
-                infoData[0]?.attributes.social[0].icon.data.attributes.width
-              }
-              height={
-                infoData[0]?.attributes.social[0].icon.data.attributes.height
-              }
+              width={500}
+              height={50}
               className="w-[24px] h-[24px]"
             />
           </a>
           <a href={infoData[0]?.attributes.social[1].text}>
-            <img
-              src={`http://178.128.19.249${infoData[0]?.attributes.social[1].icon.data.attributes.url}`}
+            <Image
+              src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[1].icon.data.attributes.url}`}
               alt="Instagram"
-              width={
-                infoData[0]?.attributes.social[1].icon.data.attributes.width
-              }
-              height={
-                infoData[0]?.attributes.social[1].icon.data.attributes.height
-              }
+              width={500}
+              height={50}
               className="w-[24px] h-[24px]"
             />
           </a>
           <a href={infoData[0]?.attributes.social[2].text}>
-            <img
-              src={`http://178.128.19.249${infoData[0]?.attributes.social[2].icon.data.attributes.url}`}
+            <Image
+              src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[2].icon.data.attributes.url}`}
               alt="Telegram"
-              width={
-                infoData[0]?.attributes.social[2].icon.data.attributes.width
-              }
-              height={
-                infoData[0]?.attributes.social[2].icon.data.attributes.height
-              }
+              width={500}
+              height={50}
               className="w-[24px] h-[24px]"
             />
           </a>
@@ -141,15 +121,11 @@ export default function Info() {
         </h2>
         <ul className="space-y-2">
           <li className="flex items-center text-gray-600">
-            <img
-              src={`http://178.128.19.249${infoData[0]?.attributes.contact[0].icon.data.attributes.url}`}
+            <Image
+              src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.contact[0].icon.data.attributes.url}`}
               alt="Map"
-              width={
-                infoData[0]?.attributes.social[2].icon.data.attributes.width
-              }
-              height={
-                infoData[0]?.attributes.social[2].icon.data.attributes.height
-              }
+              width={500}
+              height={50}
               className="w-[20px] h-[20px] opacity-70"
             />
             <span className="ml-3">
@@ -157,15 +133,11 @@ export default function Info() {
             </span>
           </li>
           <li className="flex items-center text-gray-600">
-            <img
-              src={`http://178.128.19.249${infoData[0]?.attributes.contact[1].icon.data.attributes.url}`}
+            <Image
+              src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.contact[1].icon.data.attributes.url}`}
               alt="Email"
-              width={
-                infoData[0]?.attributes.social[1].icon.data.attributes.width
-              }
-              height={
-                infoData[0]?.attributes.social[1].icon.data.attributes.height
-              }
+              width={500}
+              height={50}
               className="w-[16px] h-[16px] opacity-50"
             />
             <span className="ml-3">
@@ -173,15 +145,11 @@ export default function Info() {
             </span>
           </li>
           <li className="flex items-center text-gray-600">
-            <img
-              src={`http://178.128.19.249${infoData[0]?.attributes.contact[2].icon.data.attributes.url}`}
+            <Image
+              src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.contact[2].icon.data.attributes.url}`}
               alt="Call"
-              width={
-                infoData[0]?.attributes.social[2].icon.data.attributes.width
-              }
-              height={
-                infoData[0]?.attributes.social[2].icon.data.attributes.height
-              }
+              width={500}
+              height={50}
               className="w-[23px] h-[20px] opacity-70 mb-6"
             />
             <span className="ml-3">

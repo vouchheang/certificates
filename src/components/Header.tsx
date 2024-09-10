@@ -35,21 +35,13 @@ export default function Header() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response] = await Promise.all([
-          fetch("http://178.128.19.249/api/headers?populate=*"),
-        ]);
-
-        if (!response.ok) {
-          throw new Error("One or more network responses were not ok");
-        }
-
-        const [data] = await Promise.all([response.json()]);
-
-        setheaderData(data.data);
-      } catch (error) {
+        const res = await fetch("https://strapi-dev.seksa.today/api/headers?populate=*");
+        setheaderData((await res.json()).data);
+      } catch {
         setError("Failed to fetch data");
       }
     };
+
     fetchData();
 
     if (isMenuOpen) {
@@ -80,9 +72,9 @@ export default function Header() {
         <div className="w-[140px] h-[25px]">
           <a href="/">
             <Image
-              src={`http://178.128.19.249${headerData[0]?.attributes.logo.data.attributes.url}`}
+              src={`https://strapi-dev.seksa.today${headerData[0]?.attributes.logo.data.attributes.url}`}
               alt="Logo"
-              width={100}
+              width={500}
               height={50}
               className="w-full h-auto"
             />

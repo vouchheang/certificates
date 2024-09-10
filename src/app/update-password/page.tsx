@@ -113,7 +113,10 @@ export default function UpdatePassword() {
             >
               Update Password
             </button>
-            <button className="text-[#222222] font-bold hover:underline focus:outline-none">
+            <button
+              type="reset"
+              className="text-[#222222] font-bold hover:underline focus:outline-none"
+            >
               Close
             </button>
           </div>

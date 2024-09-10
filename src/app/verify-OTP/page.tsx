@@ -62,7 +62,7 @@ export default function VerifyOTP() {
           Input the
           <span className="text-[#00844C] font-semibold"> 6 digits OTP </span>
           that was sent to
-          <span className="text-[#00844C] font-semibold">test@gmail.com</span>
+          <span className="text-[#00844C] font-semibold">{" "} test@gmail.com</span>
         </p>
 
         <div className="flex justify-between mt-8 sm:mt-[3rem] space-x-2 w-full max-w-[500px] h-[50px] mx-auto">
@@ -92,7 +92,7 @@ export default function VerifyOTP() {
         </div>
         <div className="flex flex-col items-center space-y-3 sm:space-y-5 mt-6 sm:mt-[3rem]">
           <button
-            className={`w-full max-w-[500px] h-12 sm:h-[52px] font-bold py-4 rounded-[6px] ${
+            className={`w-full max-w-[500px] max-sm:p-2 h-12 sm:h-[52px] font-bold py-4 rounded-[6px] ${
               isOtpValid
                 ? "bg-[#00844C] text-[#FFFFFF]"
                 : "bg-gray-400 text-gray-200"
@@ -102,12 +102,12 @@ export default function VerifyOTP() {
           >
             Verify
           </button>
-          <button
+          <a href="/forgot-password"><button
             className="text-[#222222] font-Quicksand font-bold"
             onClick={handleClose}
           >
             Close
-          </button>
+          </button></a> 
         </div>
       </div>
       <ToastContainer position="top-right" autoClose={5000} />

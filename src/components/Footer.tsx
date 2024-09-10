@@ -18,18 +18,11 @@ export default function Footer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response] = await Promise.all([
-          fetch("http://178.128.19.249/api/footers?populate=*"),
-        ]);
-
-        if (!response.ok) {
-          throw new Error("One or more network responses were not ok");
-        }
-
-        const [data] = await Promise.all([response.json()]);
-
-        setfooterData(data.data);
-      } catch (error) {
+        const res = await fetch(
+          "https://strapi-dev.seksa.today/api/footers?populate=*"
+        );
+        setfooterData((await res.json()).data);
+      } catch {
         setError("Failed to fetch data");
       }
     };

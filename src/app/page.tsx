@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import React from "react";
 import Background from "../images/background.png";
@@ -14,6 +15,12 @@ import image16 from "../images/image 16.png";
 import Sitemap from "../components/Sitemap";
 
 export default function HomePage() {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log("Selected file:", file);
+    }
+  };
   return (
     <div className="flex flex-col">
       <div
@@ -35,7 +42,7 @@ export default function HomePage() {
                 <span className="block">uploading</span>
               </p>
               <div className="mt-4">
-                <Button label="Upload" />
+                <Button label="Upload" onFileChange={handleFileChange}/>
               </div>
             </div>
           </div>

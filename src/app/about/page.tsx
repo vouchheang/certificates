@@ -21,18 +21,9 @@ export default function AboutUs() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [response] = await Promise.all([
-          fetch("http://178.128.19.249/api/abouts?populate=*"),
-        ]);
-
-        if (!response.ok) {
-          throw new Error("One or more network responses were not ok");
-        }
-
-        const [data] = await Promise.all([response.json()]);
-
-        setAboutUsData(data.data);
-      } catch (error) {
+        const res = await fetch("https://strapi-dev.seksa.today/api/abouts?populate=*");
+        setAboutUsData((await res.json()).data);
+      } catch {
         setError("Failed to fetch data");
       }
     };
@@ -54,8 +45,7 @@ export default function AboutUs() {
         className="w-full pl-8"
         style={{
           backgroundImage: `url(${Left.src}), url(${Right.src})`,
-          paddingBottom:'25px',
-          
+          paddingBottom: "25px",
         }}
       >
         <h1

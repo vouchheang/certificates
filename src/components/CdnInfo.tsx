@@ -1,11 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Footer from "./Footer";
+import Info from "./Info";
 
 const ConditionalFooter = () => {
   const pathname = usePathname();
-  const skipHeaderRoutes = ["/update-password", "/forgot-password", "/verify-OTP"];
+  const skipHeaderRoutes = ["/login", "/register", "/update-password", "/forgot-password", "/verify-OTP"];
 
   if (skipHeaderRoutes.includes(pathname)) {
     return null;
@@ -13,7 +13,7 @@ const ConditionalFooter = () => {
 
   return (
     <>
-      <Footer />
+      <Info />
     </>
   );
 };

@@ -81,9 +81,9 @@ export default function ForgotPassword() {
             >
               Send OTP
             </button>
-            <button className="mt-4 text-sm text-black font-semibold hover:underline focus:outline-none">
+            <a href="/login"><button className="mt-4 text-sm text-black font-semibold hover:underline focus:outline-none">
               Close
-            </button>
+            </button></a>
           </div>
         </form>
       </div>

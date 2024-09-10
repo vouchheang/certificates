@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { Quicksand } from "next/font/google";
-import Footer from "../components/Footer";
-import ConditionalFooter from "@/components/CdnFooter";
+import ConditionalInfo from "@/components/CdnInfo";
 import { ReactNode } from "react";
 import ConditionalHeader from "../components/CdnHeader";
+import ConditionalFooter from "../components/CdnFooter";
 import "./globals.css";
 
 const quicksand = Quicksand({
@@ -27,8 +27,8 @@ export default function RootLayout({ children }: LayoutProps) {
         <ConditionalHeader />
 
         <div id="detail">{children}</div>
+        <ConditionalInfo />
         <ConditionalFooter />
-        <Footer />
       </body>
     </html>
   );

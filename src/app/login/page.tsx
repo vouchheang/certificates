@@ -147,7 +147,7 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row md:justify-between items-center max-sm:flex-col max-sm:gap-2">
+              <div className="flex flex-col md:flex-row md:justify-between items-center max-sm:flex max-sm:flex-row max-sm:justify-between">
                 <div className="flex items-center mb-4 md:mb-0">
                   <input
                     type="checkbox"
@@ -170,7 +170,7 @@ export default function LoginPage() {
                 </div>
                 <a
                   href="/forgot-password"
-                  className="text-sm text-[#000000] hover:underline"
+                  className="text-sm text-[#000000] hover:underline max-sm:mb-3.5"
                 >
                   Forgot Password?
                 </a>
@@ -179,7 +179,7 @@ export default function LoginPage() {
               <div>
                 <button
                   type="submit"
-                  className={`w-full h-[52px] flex justify-center py-4 px-4 rounded-md shadow-sm text-sm font-Quicksand mt-7 max-sm:h-[45px] ${
+                  className={`w-full h-[52px] flex justify-center py-4 px-4 rounded-md shadow-sm text-sm font-Quicksand mt-7 max-sm:pt-3 max-sm:h-[45px] ${
                     isButtonEnabled
                       ? "bg-[#00844C] text-white"
                       : "bg-gray-400 text-gray-200"
