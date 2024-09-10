@@ -118,11 +118,11 @@ function Register() {
           </div>
           <div className="flex flex-col flex-2 justify-center items-center w-[550px] h-[1000px] max-md:w-[755px] bg-white shadow-2xl max-lg:w-[1000px] max-xl:w-[1300px]">
             <div className="flex-col flex justify-center items-center mt-[3rem]">
-              <h1 className="text-[24px] font-semibold">Create Account</h1>
-              <p className="font-medium mt-5 text-[13px]">
+              <h1 className="text-[24px] max-sm:text-[20px] font-semibold">Create Account</h1>
+              <p className="font-medium mt-5 text-[13px] max-sm:text-[12px] max-lg:text-[18px] max-xl:text-[20px]">
                 Let’s get a start Create account with Name for using{" "}
-              </p>
-            </div>
+              </p> 
+            </div> 
             <div className="flex flex-col justify-center items-center">
               <Input
                 label="First Name"
@@ -145,12 +145,12 @@ function Register() {
               />
 
               <div className="flex flex-col text-[13px]">
-                <label className="mt-3 text-base font-medium">
+                <label className="mt-3 text-base max-sm:text-sm font-medium">
                   Email
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[300px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     errors.email && " border-red-400"
                   }`}
                 >
@@ -188,12 +188,12 @@ function Register() {
                 )}
               </div>
               <div className="flex flex-col text-[13px]">
-                <label className="mt-3 text-base font-medium">
+                <label className="mt-3 text-base max-sm:text-sm font-medium">
                   Create Password
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[300px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     errors.create_password && " border-red-400"
                   }`}
                 >
@@ -223,12 +223,12 @@ function Register() {
                 )}
               </div>
               <div className="flex flex-col text-[13px]">
-                <label className="mt-3 text-base font-medium">
+                <label className="mt-3 text-base max-sm:text-sm font-medium">
                   Confirm Password
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[395px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`flex items-center border-2 rounded-lg min-h-[50px] w-[470px] max-sm:max-w-[300px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     errors.create_password && " border-red-400"
                   }`}
                 >
@@ -257,8 +257,8 @@ function Register() {
                   </p>
                 )}
               </div>
-              <div className="flex flex-row gap-[30px] max-sm:mr-auto text-gray-500 items-center mt-5 mr-[7.5rem] max-lg:mr-[21rem] max-xl:mr-[40rem] ">
-                <h1 className="text-[16px] font-semibold text-gray-800">
+              <div className="flex flex-row gap-[30px] max-sm:mr-[0.9rem] max-sm:gap-4 text-gray-500 items-center mt-5 mr-[7.5rem] max-md:mr-[15rem] max-lg:mr-[21rem] max-xl:mr-[40rem] ">
+                <h1 className="text-[16px] font-semibold max-sm:text-sm text-gray-800">
                   Gender
                   <span className="text-gray-800">*</span>
                 </h1>
@@ -284,13 +284,13 @@ function Register() {
                   errors={errors}
                 />
               </div>
-              <div className="flex max-sm:mr-auto flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem] max-lg:mr-[24.5rem] max-xl:mr-[43rem] ">
+              <div className="flex max-sm:mr-[2rem] flex-row font-medium text-gray-500 gap-[10px] items-center mt-2 mr-[11rem] max-md:mr-[18.5rem]  max-lg:mr-[24.5rem] max-xl:mr-[43rem] ">
                 <input
                   type="checkbox"
                   {...register("agree", { required: true })}
                   className="min-h-10 w-5 border-2"
                 />
-                <p className="text-[16px]">
+                <p className="text-[16px] max-sm:text-sm">
                   I am agree with
                   <span className="text-red-600 ml-2">privacy</span> and{" "}
                   <span className="text-red-600">policy</span>
@@ -300,7 +300,7 @@ function Register() {
                 <Button
                   type="submit"
                   label="Create New Account"
-                  className={`w-[470px] h-[52px] max-sm:w-[390px] px-[30px] py-[14px] rounded-[6px] max-lg:w-[700px] max-xl:w-[1000px] ${
+                  className={`w-[470px] h-[52px] max-sm:w-[300px] max-md:w-[600px] px-[30px] py-[14px] rounded-[6px] max-lg:w-[700px] max-xl:w-[1000px] ${
                     isButtonDisabled ? "bg-[#A6A6A6]" : "bg-green-600"
                   } text-white`}
                 />

@@ -24,7 +24,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
         {...register(name, { required: true })}
         className="min-h-8 border-2 rounded-lg"
       />
-      <label className="text-base font-medium text-[14px]">{label}</label>
+      <label className="text-base max-sm:text-sm font-medium text-[14px]">{label}</label>
     </div>
   );
 };
