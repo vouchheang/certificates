@@ -292,8 +292,8 @@ function Register() {
                 />
                 <p className="text-[16px] max-sm:text-sm">
                   I am agree with
-                  <span className="text-red-600 ml-2">privacy</span> and{" "}
-                  <span className="text-red-600">policy</span>
+                 <a href="/privacy"> <span className="text-red-600 ml-2">privacy</span></a> and{" "}
+                 <a href="/#"> <span className="text-red-600">policy</span></a>
                 </p>
               </div>
               <div className="flex justify-center mt-5">
