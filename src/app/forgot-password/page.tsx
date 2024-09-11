@@ -12,11 +12,13 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState<string>("");
   const [emailValue, setEmailValue] = useState<boolean | null>(null);
   const router = useRouter();
+  
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const emailValue = e.target.value;
     setEmail(emailValue);
     setEmailValue(handleEmail(emailValue));
+    localStorage.setItem("email", emailValue);
   };
 
   const handleEmail = (email: string): boolean => {
@@ -32,9 +34,14 @@ export default function ForgotPassword() {
     console.log("Password-Data", passwordData);
     if (emailValue) {
       router.push("/verify-OTP");
-    } else {
+    }
+   else  {
       console.log("Invalid email address");
     }
+  };
+
+  const handleClose = (): void => {
+    router.push("/login"); 
   };
 
   return (
@@ -81,9 +88,13 @@ export default function ForgotPassword() {
             >
               Send OTP
             </button>
-            <a href="/login"><button className="mt-4 text-sm text-black font-semibold hover:underline focus:outline-none">
+            <button
+              type="button"
+              onClick={handleClose}
+              className="mt-4 text-sm text-black font-semibold hover:underline focus:outline-none"
+            >
               Close
-            </button></a>
+            </button>
           </div>
         </form>
       </div>

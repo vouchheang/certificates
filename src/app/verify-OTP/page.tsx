@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 export default function VerifyOTP() {
   const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
   const router = useRouter();
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
 
   const handleChange = (
     element: ChangeEvent<HTMLInputElement>,
@@ -62,7 +70,10 @@ export default function VerifyOTP() {
           Input the
           <span className="text-[#00844C] font-semibold"> 6 digits OTP </span>
           that was sent to
-          <span className="text-[#00844C] font-semibold">{" "} test@gmail.com</span>
+          <span className="text-[#00844C] font-semibold">
+            {" "}
+            {email ? email : "test@gmail.com"}
+          </span>
         </p>
 
         <div className="flex justify-between mt-8 sm:mt-[3rem] space-x-2 w-full max-w-[500px] h-[50px] mx-auto">
@@ -102,12 +113,14 @@ export default function VerifyOTP() {
           >
             Verify
           </button>
-          <a href="/forgot-password"><button
-            className="text-[#222222] font-Quicksand font-bold"
-            onClick={handleClose}
-          >
-            Close
-          </button></a> 
+          <a href="/forgot-password">
+            <button
+              className="text-[#222222] font-Quicksand font-bold"
+              onClick={handleClose}
+            >
+              Close
+            </button>
+          </a>
         </div>
       </div>
       <ToastContainer position="top-right" autoClose={5000} />

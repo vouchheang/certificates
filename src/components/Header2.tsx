@@ -19,7 +19,7 @@ function Header({ btnPath }: HeaderProps) {
                 alt="Logo"
                 width={150}
                 height={50}
-                className="max-sm:w-[80%]"
+                className="max-sm:w-[100px]"
               />
             </a>
           </div>

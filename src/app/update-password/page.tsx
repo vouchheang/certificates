@@ -48,6 +48,9 @@ export default function UpdatePassword() {
       toast.error("Passwords do not match.");
     }
   };
+  const handleClose = (): void => {
+    router.push("/verify-OTP");
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-200 p-4">
@@ -116,6 +119,7 @@ export default function UpdatePassword() {
             <button
               type="reset"
               className="text-[#222222] font-bold hover:underline focus:outline-none"
+              onClick={handleClose}
             >
               Close
             </button>
