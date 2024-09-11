@@ -61,13 +61,6 @@ export default function Info() {
     fetchData();
   }, []);
 
-  if (!infoData) {
-    return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
-      </div>
-    );
-  }
 
   return (
     <div className="w-full bg-[#f9f9f9] flex flex-col lg:flex-row justify-between items-start py-10 px-8">

@@ -2,6 +2,7 @@
 import Left from "../../images/Left.png";
 import Right from "../../images/Right.png";
 import { useState, useEffect } from "react";
+import { Ellipsis } from "react-css-spinners";
 
 interface TermData {
   attributes: {
@@ -22,26 +23,37 @@ interface TermData {
 export default function Terms() {
   const [termData, setTermData] = useState<TermData[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://strapi-dev.seksa.today/api/terms?populate=*");
+        const res = await fetch(
+          "https://strapi-dev.seksa.today/api/terms?populate=*"
+        );
         setTermData((await res.json()).data);
       } catch {
         setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (!termData) {
+  if (loading) {
     return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
+      <div>
+        <div className="bg-white h-screen flex flex-col justify-center items-center">
+          <Ellipsis color="rgba(33,126,41,1)" size={151} />
+        </div>
       </div>
     );
+  }
+
+  if (error) {
+    return <p>{error}</p>;
   }
 
   return (

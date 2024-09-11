@@ -1,8 +1,8 @@
 "use client";
-
+import { useState, useEffect } from "react";
+import { Ellipsis } from "react-css-spinners";
 import Left from "../../images/Left.png";
 import Right from "../../images/Right.png";
-import { useState, useEffect } from "react";
 
 interface PrivacyData {
   attributes: {
@@ -22,6 +22,7 @@ interface PrivacyData {
 export default function Privacy() {
   const [privacyData, setPrivacyData] = useState<PrivacyData[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,18 +33,26 @@ export default function Privacy() {
         setPrivacyData((await res.json()).data);
       } catch {
         setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (!privacyData) {
+  if (loading) {
     return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
+      <div>
+        <div className="bg-white h-screen flex flex-col justify-center items-center">
+          <Ellipsis color="rgba(33,126,41,1)" size={151} />
+        </div>
       </div>
     );
+  }
+
+  if (error) {
+    return <p>{error}</p>;
   }
 
   return (

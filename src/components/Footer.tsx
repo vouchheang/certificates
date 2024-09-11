@@ -24,19 +24,12 @@ export default function Footer() {
         setfooterData((await res.json()).data);
       } catch {
         setError("Failed to fetch data");
-      }
+      } 
     };
 
     fetchData();
   }, []);
 
-  if (!footerData) {
-    return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
-      </div>
-    );
-  }
 
   return (
     <div className=" p-5 bg-[#00844C]">

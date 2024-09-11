@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import path from "../../images/Path.png";
 import chevronup from "../../images/chevron-down.png";
+import { Ellipsis } from "react-css-spinners";
 
 interface FaqData {
   attributes: {
@@ -77,6 +78,7 @@ export default function FAQPage() {
   const [emailinput, setEmail] = useState<string>("");
   const [Question, setQuestion] = useState<number | null>(null);
   const [description, setDescription] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -121,18 +123,26 @@ export default function FAQPage() {
         setOtherFaqData((await res2.json()).data);
       } catch {
         setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (!faqData || !otherFaqData) {
+  if (loading) {
     return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
+      <div>
+        <div className="bg-white h-screen flex flex-col justify-center items-center">
+          <Ellipsis color="rgba(33,126,41,1)" size={151} />
+        </div>
       </div>
     );
+  }
+
+  if (error) {
+    return <p>{error}</p>;
   }
 
   return (

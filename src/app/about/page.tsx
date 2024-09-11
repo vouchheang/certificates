@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Left from "../../images/bg-l.png";
 import Right from "../../images/bg-r.png";
+import { Ellipsis } from "react-css-spinners";
 
 interface AboutUsData {
   attributes: {
@@ -17,26 +18,41 @@ interface AboutUsData {
 export default function AboutUs() {
   const [aboutUsData, setAboutUsData] = useState<AboutUsData[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://strapi-dev.seksa.today/api/abouts?populate=*");
-        setAboutUsData((await res.json()).data);
+        const res = await fetch(
+          "https://strapi-dev.seksa.today/api/abouts?populate=*"
+        );
+        const data = await res.json();
+        setAboutUsData(data.data);
       } catch {
         setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (!aboutUsData) {
+  if (loading) {
     return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
+      <div>
+        <div className="bg-white h-screen flex flex-col justify-center items-center">
+        <Ellipsis
+    color="rgba(33,126,41,1)"
+    size={151}
+  />
+        </div>
       </div>
     );
+  }
+
+  if (error) {
+    return <p>{error}</p>;
   }
 
   return (
@@ -49,7 +65,7 @@ export default function AboutUs() {
         }}
       >
         <h1
-          className={`font-Quicksand text-[34px] font-bold text-center  max-sm:pt-[16%] max-sm:p-[4%] sm:pt-[15%] md:pt-[10%] lg:pt-[8%] xl:pt-[6%]`}
+          className={`font-Quicksand text-[34px] font-bold text-center max-sm:pt-[16%] max-sm:p-[4%] sm:pt-[15%] md:pt-[10%] lg:pt-[8%] xl:pt-[6%]`}
         >
           {aboutUsData[0]?.attributes.title}
         </h1>
@@ -62,7 +78,6 @@ export default function AboutUs() {
             <span className="text-[36px] max-sm:text-[30px] sm:text-[32px]">
               {aboutUsData[0]?.attributes.span}
             </span>{" "}
-            {""}
             {aboutUsData[0]?.attributes.paragraph[0].text}
           </p>
           <p className="mb-3 text-justify">

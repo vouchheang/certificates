@@ -58,13 +58,6 @@ export default function Header() {
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
-  if (!headerData) {
-    return (
-      <div className="bg-[#00844C] h-[59px] flex items-center justify-between px-10 text-white text-max-sm">
-        Loading...
-      </div>
-    );
-  }
 
   return (
     <header className="fixed top-0 left-0 w-full bg-[#FFFFFF] py-6 max-sm:py-4 shadow-sm z-50 max-sm:h-[4rem]">
