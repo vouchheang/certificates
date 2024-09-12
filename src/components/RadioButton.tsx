@@ -18,14 +18,17 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-2">
-      <input
-        type="radio"
-        value={value}
-        {...register(name, { required: true })}
-        className="min-h-8 border-2 rounded-lg"
-      />
-      <label className="text-base max-sm:text-sm font-medium text-[14px]">{label}</label>
-    </div>
+  <label className="flex items-center gap-2 text-base max-sm:text-sm font-medium text-[14px]">
+    <input
+      type="radio"
+      value={value}
+      {...register(name, { required: true })}
+      className="min-h-8 border-2 rounded-lg"
+    />
+    {label}
+  </label>
+ </div>
+
   );
 };
 
