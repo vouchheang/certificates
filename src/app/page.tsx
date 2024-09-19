@@ -120,11 +120,8 @@ export default async function HomePage() {
       >
         <div className="w-full max-w-screen-xl px-4 py-10 mx-auto flex flex-col items-center mt-[3.5rem]">
           <div className="text-center max-md:mb-7 lg:mb-7 ">
-            <h2 className=" sm:text-2xl lg:text-2xl font-Quicksand text-gray-900 font-bold lg:space-y-4 max-md:text-1xl">
-              {homeData[0]?.attributes.heading} <br />
-              <span className="block  sm:mt-0">
-                {homeData[0]?.attributes.subheading}
-              </span>
+            <h2 className="w-[75%] m-auto sm:text-2xl lg:text-2xl font-Quicksand text-gray-900 font-bold lg:space-y-4 max-md:text-1xl">
+              {homeData[0]?.attributes.heading} 
             </h2>
           </div>
           <div className="flex justify-center w-8/12 max-w-4xl bg-[#00844C] bg-opacity-10 rounded-md shadow-sm border-dashed border-green-500 border-2 p-6">
