@@ -35,11 +35,11 @@ export default function Footer() {
     <div className=" p-5 bg-[#00844C]">
       <p className="text-xs sm:text-sm md:te text-white">
         {footerData[0]?.attributes.text}|{" "}
-        <a href={footerData[0]?.attributes.link[0].path} className="underline">
+        <a href={footerData[0]?.attributes.link[0].path} className="underline" target="_blank">
           {footerData[0]?.attributes.link[0].label}
         </a>{" "}
         |{" "}
-        <a href={footerData[0]?.attributes.link[1].path} className="underline">
+        <a href={footerData[0]?.attributes.link[1].path} className="underline" target="_blank">
           {footerData[0]?.attributes.link[1].label}
         </a>
       </p>

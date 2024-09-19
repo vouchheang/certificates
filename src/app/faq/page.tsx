@@ -181,20 +181,18 @@ export default function FAQPage() {
           <h2 className="text-xl sm:text-3xl font-semibold mb-6 text-center">
             {faqData[0]?.attributes.heading2}
           </h2>
-          <div className="flex flex-col lg:flex-row gap-6">
-            <div className="flex-1">
-              {[1, 2, 3].map((index) => (
+          <div className="grid grid-cols-2 gap-4">
+          
+              {faqData[0]?.attributes.questionsList.map((faqItem, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4"
+                  className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-1"
                 >
                   <div
-                    className="flex justify-between items-center "
+                    className="flex justify-between items-center"
                     onClick={() => toggleQuestion(index)}
                   >
-                    <h3 className="font-semibold">
-                      {faqData[0]?.attributes.questionsList[0].heading}
-                    </h3>
+                    <h3 className="font-semibold">{faqItem.heading}</h3>
 
                     <div className="w-[24px] h-[24px]">
                       <Image
@@ -209,52 +207,11 @@ export default function FAQPage() {
                     </div>
                   </div>
                   {Question === index && (
-                    <p className="text-sm sm:text-base mt-4">
-                      {index === 1
-                        ? `${faqData[0]?.attributes.questionsList[0].text}`
-                        : `${faqData[0]?.attributes.questionsList[0].text}`}
-                    </p>
+                    <p className="text-sm sm:text-base mt-4">{faqItem.text}</p>
                   )}
                 </div>
               ))}
-            </div>
-            <div className="flex-1 flex flex-col gap-4">
-              {[4, 5, 6].map((index) => (
-                <div
-                  key={index}
-                  className="bg-white border border-gray-200 rounded-lg shadow-sm p-4"
-                >
-                  <div
-                    className="flex justify-between items-center cursor-pointer"
-                    onClick={() => toggleQuestion(index)}
-                  >
-                    <h3 className="font-semibold">
-                      {index === 1
-                        ? `${faqData[0]?.attributes.questionsList[0].text}`
-                        : `${faqData[0]?.attributes.questionsList[0].heading}`}
-                    </h3>
-                    <div className="w-[24px] h-[24px]">
-                      <Image
-                        src={Question === index ? path : chevronup}
-                        alt="FAQ Image"
-                        className={`${
-                          Question === index
-                            ? "w-3.5 h-2 mt-3 ml-1.5"
-                            : "w-6 h-6"
-                        } text-[#717171]`}
-                      />
-                    </div>
-                  </div>
-                  {Question === index && (
-                    <p className="text-sm  mt-4">
-                      {index === 1
-                        ? `${faqData[0]?.attributes.questionsList[0].text}`
-                        : `${faqData[0]?.attributes.questionsList[0].text}`}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
+           
           </div>
         </div>
       </div>
@@ -290,7 +247,7 @@ export default function FAQPage() {
 
       <div className="py-12 px-4">
         <div className="container mx-auto">
-          <h2 className="text-xl sm:text-2xl font-Quicksand font-bold text-center ">
+          <h2 id="help" className="text-xl sm:text-2xl font-Quicksand font-bold text-center ">
             {faqData[0]?.attributes.heading4}
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

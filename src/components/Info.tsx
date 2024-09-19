@@ -60,6 +60,7 @@ export default function Info() {
 
     fetchData();
   }, []);
+  
 
 
   return (
@@ -78,7 +79,7 @@ export default function Info() {
           {infoData[0]?.attributes.descriptions}
         </p>
         <div className="flex space-x-4">
-          <a href={infoData[0]?.attributes.social[0].text}>
+          <a href={infoData[0]?.attributes.social[0].text} target="_blank">
             {" "}
             <Image
               src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[0].icon.data.attributes.url}`}
@@ -88,7 +89,7 @@ export default function Info() {
               className="w-[24px] h-[24px]"
             />
           </a>
-          <a href={infoData[0]?.attributes.social[1].text}>
+          <a href={infoData[0]?.attributes.social[1].text} target="_blank">
             <Image
               src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[1].icon.data.attributes.url}`}
               alt="Instagram"
@@ -97,7 +98,7 @@ export default function Info() {
               className="w-[24px] h-[24px]"
             />
           </a>
-          <a href={infoData[0]?.attributes.social[2].text}>
+          <a href={infoData[0]?.attributes.social[2].text} target="_blank">
             <Image
               src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[2].icon.data.attributes.url}`}
               alt="Telegram"
