@@ -5,9 +5,10 @@ import flag from "../images/KH-flag.png";
 
 interface HeaderProps {
   btnPath: string;
+  label:string;
 }
 
-function Header({ btnPath }: HeaderProps) {
+function Header({ btnPath, label }: HeaderProps) {
   return (
     <header className="bg-white fixed top-0 left-0 w-full font-Quicksand border-b-2">
       <nav>
@@ -29,7 +30,7 @@ function Header({ btnPath }: HeaderProps) {
           <li>
             <Link href={btnPath}>
               <button className="rounded-xl border-2 bg-green-800 text-white px-4 py-2.5 text-[17px] font-medium max-sm:text-sm">
-                Sign up
+                {label}
               </button>
             </Link>
           </li>

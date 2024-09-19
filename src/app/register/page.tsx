@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import img from "@/images/Groupimg.png";
-import Button from "@/components/Button";
+import Button from "@/components/ButtonCreate";
 import bglt from "@/images/BACKGROUNDLEFTT.png";
 import bglb from "@/images/BACKGROUNDLEFTB.png";
 import bgrt from "@/images/BACKGROUNDRIGHTT.png";
@@ -101,7 +101,7 @@ function Register() {
 
   return (
     <>
-      <Header btnPath="/login" />
+      <Header btnPath="/login" label="Login" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex box-border">
           <div

@@ -58,7 +58,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header btnPath="/register" />
+      <Header btnPath="/register" label="Sign up" />
       <div className="flex flex-1 bg-gray-50">
         <div
           className="lg:w-2/3 hidden lg:flex flex-col justify-center p-8"
