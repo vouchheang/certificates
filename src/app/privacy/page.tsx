@@ -1,6 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Ellipsis } from "react-css-spinners";
 import Left from "../../images/Left.png";
 import Right from "../../images/Right.png";
 
@@ -18,42 +15,31 @@ interface PrivacyData {
     }[];
   };
 }
-
-export default function Privacy() {
-  const [privacyData, setPrivacyData] = useState<PrivacyData[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://strapi-dev.seksa.today/api/privacies?populate=*"
-        );
-        setPrivacyData((await res.json()).data);
-      } catch {
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
+async function fetchprivacyData(): Promise<{
+  privacyData: PrivacyData[];
+}> {
+  try {
+    const res1 = await fetch(
+      "https://strapi-dev.seksa.today/api/privacies?populate=*",
+      {
+        cache: "no-store",
       }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div>
-        <div className="bg-white h-screen flex flex-col justify-center items-center">
-          <Ellipsis color="rgba(33,126,41,1)" size={151} />
-        </div>
-      </div>
     );
-  }
 
-  if (error) {
-    return <p>{error}</p>;
+    if (!res1.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data1 = await res1.json();
+
+    return { privacyData: data1.data };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    return { privacyData: [] };
   }
+}
+export default async function Privacy() {
+  const { privacyData } = await fetchprivacyData();
 
   return (
     <div className="px-0 w-full min-h-screen bg-[#FBFBFB] flex justify-center items-center py-[60px] flex-col">

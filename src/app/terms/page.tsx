@@ -1,8 +1,5 @@
-"use client";
 import Left from "../../images/Left.png";
 import Right from "../../images/Right.png";
-import { useState, useEffect } from "react";
-import { Ellipsis } from "react-css-spinners";
 
 interface TermData {
   attributes: {
@@ -19,42 +16,31 @@ interface TermData {
     }[];
   };
 }
-
-export default function Terms() {
-  const [termData, setTermData] = useState<TermData[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://strapi-dev.seksa.today/api/terms?populate=*"
-        );
-        setTermData((await res.json()).data);
-      } catch {
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
+async function fetchtermData(): Promise<{
+  termData: TermData[];
+}> {
+  try {
+    const res1 = await fetch(
+      "https://strapi-dev.seksa.today/api/terms?populate=*",
+      {
+        cache: "no-store",
       }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div>
-        <div className="bg-white h-screen flex flex-col justify-center items-center">
-          <Ellipsis color="rgba(33,126,41,1)" size={151} />
-        </div>
-      </div>
     );
-  }
 
-  if (error) {
-    return <p>{error}</p>;
+    if (!res1.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data1 = await res1.json();
+
+    return { termData: data1.data };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    return { termData: [] };
   }
+}
+export default async function Footer() {
+  const { termData } = await fetchtermData();
 
   return (
     <div className="w-full px-[20px] py-0 text-justify box-border">

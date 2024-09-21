@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Background from "../images/background.png";
+import Link from "next/link";
 
 interface HomeData {
   attributes: {
@@ -121,16 +122,20 @@ export default async function HomePage() {
         <div className="w-full max-w-screen-xl px-4 py-10 mx-auto flex flex-col items-center mt-[3.5rem]">
           <div className="text-center max-md:mb-7 lg:mb-7 ">
             <h2 className="w-[75%] m-auto sm:text-2xl lg:text-2xl font-Quicksand text-gray-900 font-bold lg:space-y-4 max-md:text-1xl">
-              {homeData[0]?.attributes.heading} 
+              {homeData[0]?.attributes.heading}
             </h2>
           </div>
           <div className="flex justify-center w-8/12 max-w-4xl bg-[#00844C] bg-opacity-10 rounded-md shadow-sm border-dashed border-green-500 border-2 p-6">
             <div className="flex flex-col items-center w-full max-w-lg">
-              <Image  src={`https://strapi-dev.seksa.today${cardData[0]?.attributes.card[3].icon.data.attributes.url}`}
-                  width={500}
-                  height={500} alt="Upload Icon" className="w-20 h-20" />
+              <Image
+                src={`https://strapi-dev.seksa.today${cardData[0]?.attributes.card[3].icon.data.attributes.url}`}
+                width={500}
+                height={500}
+                alt="Upload Icon"
+                className="w-20 h-20"
+              />
               <p className="text-[#00844C] font-bold text-sm text-center mt-4 w-[75%]">
-              {cardData[0]?.attributes.card[3].text}
+                {cardData[0]?.attributes.card[3].text}
               </p>
               <div className="mt-4"></div>
             </div>
@@ -249,12 +254,13 @@ export default async function HomePage() {
                 </a>
               </li>
               <li>
-                <a
+                <Link
                   href={homeData[0]?.attributes.links[1].path}
                   className="text-[#00844C] hover:text-[#005a40]"
+                  scroll={false}
                 >
                   {homeData[0]?.attributes.links[1].label}
-                </a>
+                </Link>
               </li>
               <li>
                 <a

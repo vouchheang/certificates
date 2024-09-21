@@ -1,5 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface InfoData {
@@ -41,28 +39,31 @@ interface InfoData {
     }[];
   };
 }
-
-export default function Info() {
-  const [infoData, setinfoData] = useState<InfoData[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*"
-        );
-        setinfoData((await res.json()).data);
-      } catch {
-        setError("Failed to fetch data");
+async function fetchinfoData(): Promise<{
+  infoData: InfoData[];
+}> {
+  try {
+    const res1 = await fetch(
+      "https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*",
+      {
+        cache: "no-store",
       }
-    };
+    );
 
-    fetchData();
-  }, []);
-  
+    if (!res1.ok) {
+      throw new Error("Network response was not ok");
+    }
 
+    const data1 = await res1.json();
 
+    return { infoData: data1.data };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    return { infoData: [] };
+  }
+}
+export default async function Footer() {
+  const { infoData } = await fetchinfoData();
   return (
     <div className="w-full bg-[#f9f9f9] flex flex-col lg:flex-row justify-between items-start py-10 px-8">
       <div className="flex flex-col lg:w-2/3">

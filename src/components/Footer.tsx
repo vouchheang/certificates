@@ -1,6 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
-
 interface FooterData {
   attributes: {
     text: string;
@@ -10,36 +7,48 @@ interface FooterData {
     }[];
   };
 }
+async function fetchfooterData(): Promise<{
+  footerData: FooterData[];
+}> {
+  try {
+    const res1 = await fetch(
+      "https://strapi-dev.seksa.today/api/footers?populate=*",
+      {
+        cache: "no-store",
+      }
+    );
 
-export default function Footer() {
-  const [footerData, setfooterData] = useState<FooterData[]>([]);
-  const [error, setError] = useState<string | null>(null);
+    if (!res1.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://strapi-dev.seksa.today/api/footers?populate=*"
-        );
-        setfooterData((await res.json()).data);
-      } catch {
-        setError("Failed to fetch data");
-      } 
-    };
+    const data1 = await res1.json();
 
-    fetchData();
-  }, []);
-
-
+    return { footerData: data1.data };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    return { footerData: [] };
+  }
+}
+export default async function Footer() {
+  const { footerData } = await fetchfooterData();
   return (
     <div className=" p-5 bg-[#00844C]">
       <p className="text-xs sm:text-sm md:te text-white">
         {footerData[0]?.attributes.text}|{" "}
-        <a href={footerData[0]?.attributes.link[0].path} className="underline" target="_blank">
+        <a
+          href={footerData[0]?.attributes.link[0].path}
+          className="underline"
+          target="_blank"
+        >
           {footerData[0]?.attributes.link[0].label}
         </a>{" "}
         |{" "}
-        <a href={footerData[0]?.attributes.link[1].path} className="underline" target="_blank">
+        <a
+          href={footerData[0]?.attributes.link[1].path}
+          className="underline"
+          target="_blank"
+        >
           {footerData[0]?.attributes.link[1].label}
         </a>
       </p>
