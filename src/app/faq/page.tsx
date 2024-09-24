@@ -2,6 +2,7 @@ import Image from "next/image";
 import background from "../../images/background.png";
 import QuestionsList from "../../components/QuestionsList";
 import Faqform from "../../components/Faqform";
+import DownloadComponent from "../../components/Pdfdownload";
 interface FaqData {
   attributes: {
     heading1: string;
@@ -99,6 +100,8 @@ async function fetchfaqData(): Promise<{
 }
 export default async function FAQPage() {
   const { faqData, iconData } = await fetchfaqData();
+ 
+
 
   return (
     <div
@@ -141,29 +144,16 @@ export default async function FAQPage() {
           <h2 className="sm:text-3xl font-Quicksand mb-8 text-center font-bold">
             {faqData[0]?.attributes.heading3}
           </h2>
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-  {iconData[0]?.attributes.faqCard.map((item, index) => (
-    <a
-      key={index}
-      href={`https://strapi-dev.seksa.today${item.pdfFile.data.attributes.url}`}
-      download
-    >
-      <div className="bg-white border border-gray-200 rounded-[6px] shadow-sm text-center p-6">
-        <Image
-          src={`https://strapi-dev.seksa.today${item.icon.data.attributes.url}`}
-          alt="picture"
-          width={500}
-          height={50}
-          className="w-14 h-14 mx-auto mb-4"
-        />
-         <h4 className="font-Quicksand font-bold">
-          {faqData[0]?.attributes.faqCard[index]?.text}
-        </h4>
-      </div>
-    </a>
-  ))}
-</div>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {iconData[0]?.attributes.faqCard.map((item, index) => (
+              <DownloadComponent
+              key={index} // Add a unique key prop
+              item={item} // Pass the current item
+              index={index} // Pass the index
+              faqData={faqData} // Pass the entire faqData
+            />
+            ))}
+          </div>
         </div>
       </div>
       <div className="py-12 px-4">

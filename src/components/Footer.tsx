@@ -1,3 +1,4 @@
+
 interface FooterData {
   attributes: {
     text: string;

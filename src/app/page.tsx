@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import Background from "../images/background.png";
 import Link from "next/link";
+import Button from "../components/Button";
 
 interface HomeData {
   attributes: {
@@ -134,10 +135,11 @@ export default async function HomePage() {
                 alt="Upload Icon"
                 className="w-20 h-20"
               />
+            
               <p className="text-[#00844C] font-bold text-sm text-center mt-4 w-[75%]">
                 {cardData[0]?.attributes.card[3].text}
               </p>
-              <div className="mt-4"></div>
+              <div className="mt-4"><Button label="Upload"/></div>
             </div>
           </div>
         </div>
@@ -196,7 +198,7 @@ export default async function HomePage() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-Quicksand text-[#222222] font-bold mb-4">
             {homeData[0]?.attributes.paragraph[1].heading}
           </h2>
-          <p className="text-sm w-[45%] m-auto sm:text-base lg:text-lg text-[#222222] mb-8">
+          <p className="text-sm w-[45%] max-sm:w-[90%] m-auto sm:text-base lg:text-lg text-[#222222] mb-8">
             {homeData[0]?.attributes.paragraph[1].text}
           </p>
           <div className="flex flex-wrap justify-center gap-8">
