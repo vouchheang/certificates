@@ -14,7 +14,6 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   label,
   name,
   register,
-  errors,
 }) => {
   return (
     <div className="flex items-center gap-2">

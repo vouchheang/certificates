@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import img from "@/images/Groupimg.png";
-import Button from "@/components/Button";
+import Button from "@/components/ButtonCreate";
 import bglt from "@/images/BACKGROUNDLEFTT.png";
 import bglb from "@/images/BACKGROUNDLEFTB.png";
 import bgrt from "@/images/BACKGROUNDRIGHTT.png";
@@ -26,7 +26,7 @@ interface UserFormInput {
   first_name: string;
   last_name: string;
   email: string;
-  create_password: number;
+  password: number;
   confirm_password: number;
   gender: string[];
   agree: boolean;
@@ -39,17 +39,8 @@ function Register() {
   const [createPassword, setCreatePassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [createPasswordView, setCreatePasswordView] = useState<boolean>(false);
-  const [confirmPasswordView, setConfirmPasswordView] =
-    useState<boolean>(false);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<UserFormInput>({
-    mode: "onChange",
-  });
+  const [confirmPasswordView, setConfirmPasswordView] = useState<boolean>(false);
+  const {register, handleSubmit, watch, formState: { errors }, reset,} = useForm<UserFormInput>({mode: "onChange",});
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
   const createPasswordViewVisible = () => {
@@ -58,50 +49,52 @@ function Register() {
   const confirmPasswordViewVisible = () => {
     setConfirmPasswordView(!confirmPasswordView);
   };
-
   const watchField = watch();
+
   useEffect(() => {
-  const isAnyFieldInvalid = Object.values(watchField).some(
+    const isAnyFieldInvalid = Object.values(watchField).some(
       (value) => value === "" || value === false
     );
     setIsButtonDisabled(isAnyFieldInvalid);
   }, [watchField]);
 
   const onSubmit: SubmitHandler<UserFormInput> = async (data) => {
-    console.log(data);
+    const { confirm_password, agree, gender, ...submittedData } = data;
     if (createPassword === confirmPassword) {
-      toast.success("You have successfully Create Account.");
+      toast.success("You have successfully created an account.");
     } else {
       toast.error("Passwords do not match.");
+      return;
     }
+
     reset();
     setFirstName("");
     setLastName("");
     setEmail("");
+
     try {
-      const response = await fetch("", {
+      const response = await fetch("http://localhost:3001/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submittedData),
       });
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log("Form submitted successfully:", responseData);
-        return responseData;
+        console.log(responseData);
       } else {
-        console.error("Form submission failed:", response.statusText);
+        console.error(response.statusText);
       }
     } catch (error) {
-      console.error("An error occurred while submitting the form:", error);
+      console.error(error);
     }
   };
 
   return (
     <>
-      <Header btnPath="/login" />
+      <Header btnPath="/login" label="Login" />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex box-border">
           <div
@@ -121,8 +114,8 @@ function Register() {
               <h1 className="text-[24px] max-sm:text-[20px] font-semibold">Create Account</h1>
               <p className="font-medium mt-5 text-[13px] max-sm:text-[12px] max-lg:text-[18px] max-xl:text-[20px]">
                 Let’s get a start Create account with Name for using{" "}
-              </p> 
-            </div> 
+              </p>
+            </div>
             <div className="flex flex-col justify-center items-center">
               <Input
                 label="First Name"
@@ -150,9 +143,8 @@ function Register() {
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
-                    errors.email && " border-red-400"
-                  }`}
+                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${errors.email && " border-red-400"
+                    }`}
                 >
                   <input
                     type="email"
@@ -193,13 +185,12 @@ function Register() {
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
-                    errors.create_password && " border-red-400"
-                  }`}
+                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${errors.password && " border-red-400"
+                    }`}
                 >
                   <input
                     type={createPasswordView ? "text" : "password"}
-                    {...register("create_password", {
+                    {...register("password", {
                       required: true,
                       onChange: (e) => setCreatePassword(e.target.value),
                       minLength: { value: 6, message: "At least 6 characters" },
@@ -216,9 +207,9 @@ function Register() {
                     height={15}
                   />
                 </div>
-                {errors.create_password && (
+                {errors.password && (
                   <p className="text-red-600 text-[13px] font-medium">
-                    {errors.create_password.message}
+                    {errors.password.message}
                   </p>
                 )}
               </div>
@@ -228,9 +219,8 @@ function Register() {
                   <span className="text-gray-800">*</span>
                 </label>
                 <div
-                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${
-                    errors.create_password && " border-red-400"
-                  }`}
+                  className={`flex items-center border-2 rounded-lg h-[50px] w-[470px] max-sm:w-[360px] max-sm:h-[42px] max-md:w-[600px] max-lg:w-[700px] max-xl:w-[1000px] ${errors.password && " border-red-400"
+                    }`}
                 >
                   <input
                     type={confirmPasswordView ? "text" : "password"}
@@ -292,17 +282,16 @@ function Register() {
                 />
                 <p className="text-[16px] max-sm:text-sm">
                   I am agree with
-                 <a href="/privacy"> <span className="text-red-600 ml-2">privacy</span></a> and{" "}
-                 <a href="/#"> <span className="text-red-600">policy</span></a>
+                  <a href="/privacy"> <span className="text-red-600 ml-2">privacy</span></a> and{" "}
+                  <a href="/#"> <span className="text-red-600">policy</span></a>
                 </p>
               </div>
               <div className="flex justify-center mt-5">
                 <Button
                   type="submit"
                   label="Create New Account"
-                  className={`w-[470px] h-[52px] max-sm:w-[360px] max-md:w-[600px] px-[30px] py-[14px] rounded-[6px] max-lg:w-[700px] max-xl:w-[1000px] ${
-                    isButtonDisabled ? "bg-[#A6A6A6]" : "bg-green-600"
-                  } text-white`}
+                  className={`w-[470px] h-[52px] max-sm:w-[360px] max-md:w-[600px] px-[30px] py-[14px] rounded-[6px] max-lg:w-[700px] max-xl:w-[1000px] ${isButtonDisabled ? "bg-[#A6A6A6]" : "bg-green-600"
+                    } text-white`}
                 />
               </div>
               <div className="flex items-center justify-center w-full my-4">
