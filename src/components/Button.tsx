@@ -8,37 +8,17 @@ interface ButtonProps {
   onFileChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  label,
-  className = "",
-  type = "button",
-  onFileChange,
-}) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
+const Button: React.FC<ButtonProps> = ({ label, className = "" }) => {
   return (
     <>
       <button
         className={`bg-[#00844C] py-3 px-6 rounded max-sm:py-4 ${className}`}
-        type={type}
-        onClick={handleClick}
       >
         <p className="text-md max-sm:text-sm text-white font-semibold">
           {label}
         </p>
       </button>
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        onChange={onFileChange}
-      />
+      <input type="file" style={{ display: "none" }} />
     </>
   );
 };

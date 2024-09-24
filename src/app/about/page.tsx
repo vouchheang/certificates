@@ -1,8 +1,5 @@
-"use client";
-import { useState, useEffect } from "react";
 import Left from "../../images/bg-l.png";
 import Right from "../../images/bg-r.png";
-import { Ellipsis } from "react-css-spinners";
 
 interface AboutUsData {
   attributes: {
@@ -15,45 +12,31 @@ interface AboutUsData {
   };
 }
 
-export default function AboutUs() {
-  const [aboutUsData, setAboutUsData] = useState<AboutUsData[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://strapi-dev.seksa.today/api/abouts?populate=*"
-        );
-        const data = await res.json();
-        setAboutUsData(data.data);
-      } catch {
-        setError("Failed to fetch data");
-      } finally {
-        setLoading(false);
+async function fetchaboutUsData(): Promise<{
+  aboutUsData: AboutUsData[];
+}> {
+  try {
+    const res1 = await fetch(
+      "https://strapi-dev.seksa.today/api/abouts?populate=*",
+      {
+        cache: "no-store",
       }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return (
-      <div>
-        <div className="bg-white h-screen flex flex-col justify-center items-center">
-        <Ellipsis
-    color="rgba(33,126,41,1)"
-    size={151}
-  />
-        </div>
-      </div>
     );
-  }
 
-  if (error) {
-    return <p>{error}</p>;
+    if (!res1.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data1 = await res1.json();
+
+    return { aboutUsData: data1.data };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    return { aboutUsData: [] };
   }
+}
+export default async function AboutUs() {
+  const { aboutUsData } = await fetchaboutUsData();
 
   return (
     <div className={`w-full flex flex-col `}>

@@ -1,5 +1,3 @@
-"use client";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface InfoData {
@@ -41,27 +39,31 @@ interface InfoData {
     }[];
   };
 }
-
-export default function Info() {
-  const [infoData, setinfoData] = useState<InfoData[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*"
-        );
-        setinfoData((await res.json()).data);
-      } catch {
-        setError("Failed to fetch data");
+async function fetchinfoData(): Promise<{
+  infoData: InfoData[];
+}> {
+  try {
+    const res1 = await fetch(
+      "https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*",
+      {
+        cache: "no-store",
       }
-    };
+    );
 
-    fetchData();
-  }, []);
+    if (!res1.ok) {
+      throw new Error("Network response was not ok");
+    }
 
+    const data1 = await res1.json();
 
+    return { infoData: data1.data };
+  } catch (error) {
+    console.error("Error fetching home data:", error);
+    return { infoData: [] };
+  }
+}
+export default async function Footer() {
+  const { infoData } = await fetchinfoData();
   return (
     <div className="w-full bg-[#f9f9f9] flex flex-col lg:flex-row justify-between items-start py-10 px-8">
       <div className="flex flex-col lg:w-2/3">
@@ -78,7 +80,7 @@ export default function Info() {
           {infoData[0]?.attributes.descriptions}
         </p>
         <div className="flex space-x-4">
-          <a href={infoData[0]?.attributes.social[0].text}>
+          <a href={infoData[0]?.attributes.social[0].text} target="_blank">
             {" "}
             <Image
               src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[0].icon.data.attributes.url}`}
@@ -88,7 +90,7 @@ export default function Info() {
               className="w-[24px] h-[24px]"
             />
           </a>
-          <a href={infoData[0]?.attributes.social[1].text}>
+          <a href={infoData[0]?.attributes.social[1].text} target="_blank">
             <Image
               src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[1].icon.data.attributes.url}`}
               alt="Instagram"
@@ -97,7 +99,7 @@ export default function Info() {
               className="w-[24px] h-[24px]"
             />
           </a>
-          <a href={infoData[0]?.attributes.social[2].text}>
+          <a href={infoData[0]?.attributes.social[2].text} target="_blank">
             <Image
               src={`https://strapi-dev.seksa.today${infoData[0]?.attributes.social[2].icon.data.attributes.url}`}
               alt="Telegram"
