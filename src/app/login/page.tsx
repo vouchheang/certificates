@@ -20,6 +20,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>(""); // Error message state
+  const [loading, setLoading] = useState<boolean>(false); // For loading state
 
   const EmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const email = e.target.value;
@@ -39,21 +41,45 @@ export default function LoginPage() {
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    const passwordData = {
+    setLoading(true); 
+    setErrorMessage("");
+    const loginData = {
+      email,
       password: passwordValue,
-      emailValid: emailValid,
-      checkbox: isChecked,
     };
-    console.log("Password Data:", passwordData);
+
+    try {
+      const response = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData), 
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login Successful:", data);
+
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setErrorMessage("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false); 
+    }
+
     setEmail("");
     setPasswordValue("");
     setIsChecked(false);
     setEmailValid(null);
   };
-
   const isButtonEnabled = emailValid && passwordValue.length > 0 && isChecked;
 
   return (

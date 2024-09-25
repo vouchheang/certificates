@@ -32,7 +32,7 @@ function Contact() {
       localStorage.setItem(key, value);
     };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     let hasError = false;
     const newErrors = { name: "", email: "", message: "" };
@@ -73,22 +73,44 @@ function Contact() {
     localStorage.removeItem("contactName");
     localStorage.removeItem("contactEmail");
     localStorage.removeItem("contactMessage");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "a4443378-7e6b-4a8e-833a-4c1d0e92782d",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        console.log(result);
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
   };
 
   return (
-  
     <div
-      className=" bg-[#FBFBFB] flex justify-center items-center mt-[50px] W-full h-auto pb-[5%]  "
+      className="bg-[#FBFBFB] flex justify-center items-center mt-[50px] W-full h-auto pb-[5%]"
       style={{
         backgroundImage: `url(${Left.src}), url(${Right.src})`,
       }}
     >
-      <div className="w-full max-w-[906px]  flex flex-col gap-[30px] mt-[8%]">
+      <div className="w-full max-w-[906px] flex flex-col gap-[30px] mt-[8%]">
         <h1 className="font-semibold text-[24px] md:text-[34px] leading-[30px] md:leading-[57.8px] text-center">
           Contact Us
         </h1>
         <form
-          className="flex flex-col gap-[20px] md:gap-[30px] pl-[50px] pr-[50px] "
+          className="flex flex-col gap-[20px] md:gap-[30px] pl-[50px] pr-[50px]"
           onSubmit={handleSubmit}
         >
           <div className="w-full flex flex-col gap-[10px]">
@@ -178,7 +200,6 @@ function Contact() {
         </form>
       </div>
     </div>
-  
   );
 }
 

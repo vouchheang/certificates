@@ -21,8 +21,8 @@ export default function QuestionsList({ questions }: QuestionsListProps) {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      
+    <div className="flex flex-col lg:flex-row gap-6">
+      {/* Left Column (Questions 1-3) */}
       <div className="flex-1">
         {questions.slice(0, 3).map((question, index) => (
           <div
@@ -30,17 +30,18 @@ export default function QuestionsList({ questions }: QuestionsListProps) {
             className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4"
           >
             <div
-              className="flex justify-between items-center"
+              className="flex justify-between items-center cursor-pointer"
               onClick={() => toggleQuestion(index)}
             >
               <h3 className="font-semibold">{question.heading}</h3>
+
               <div className="w-[24px] h-[24px]">
                 <Image
                   src={selectedQuestion === index ? path : chevronup}
-                  alt="FAQ Image"
+                  alt="Toggle Icon"
                   className={`${
                     selectedQuestion === index
-                      ? "w-3.5 h-2 mt-1.5 ml-1.5 "
+                      ? "w-3.5 h-2 mt-1.5 ml-1.5"
                       : "w-6 h-6"
                   } text-[#717171]`}
                 />
@@ -53,25 +54,26 @@ export default function QuestionsList({ questions }: QuestionsListProps) {
         ))}
       </div>
 
-      
-      <div className="flex-1 flex flex-col gap-4">
+      {/* Right Column (Questions 4-6) */}
+      <div className="flex-1">
         {questions.slice(3, 6).map((question, index) => (
           <div
-            key={index + 3} 
-            className="bg-white border border-gray-200 rounded-lg shadow-sm p-4"
+            key={index + 3}
+            className="bg-white border border-gray-200 rounded-lg shadow-sm p-4 mb-4"
           >
             <div
               className="flex justify-between items-center cursor-pointer"
               onClick={() => toggleQuestion(index + 3)}
             >
               <h3 className="font-semibold">{question.heading}</h3>
+
               <div className="w-[24px] h-[24px]">
                 <Image
                   src={selectedQuestion === index + 3 ? path : chevronup}
-                  alt="FAQ Image"
+                  alt="Toggle Icon"
                   className={`${
                     selectedQuestion === index + 3
-                      ? "w-3.5 h-2 mt-3 ml-1.5"
+                      ? "w-3.5 h-2 mt-1.5 ml-1.5"
                       : "w-6 h-6"
                   } text-[#717171]`}
                 />

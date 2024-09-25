@@ -108,16 +108,16 @@ export default async function FAQPage() {
       className="bg-gray-50 lg:mt-[4rem]"
       style={{ backgroundImage: `url(${background.src})` }}
     >
-      <div className="py-12 max-md:mt-[3.5rem] flex justify-center">
+      <div className="py-12 max-md:mt-[3.5rem] flex justify-center max-lg:p-[10%]">
         <div className="container text-center px-4">
           <h1 className="text-2xl sm:text-3xl font-bold mb-9 font-Quicksand text-[#000000]">
             {faqData[0]?.attributes.heading1}
           </h1>
-          <div className="relative inline-block lg:right-[22rem] max-md:right-[11rem]">
+          <div className="relative inline-block lg:right-[18rem] max-md:right-[11rem]">
             <input
               typeof={`${faqData[0]?.attributes.button[1].type}`}
               placeholder={`${faqData[0]?.attributes.button[1].label}`}
-              className={`max-md:w-[350px] absolute lg:w-[696px] xl:w-[800px]  h-[57px] border border-[${faqData[0]?.attributes.button[1].color}] rounded-[6px] p-4 pl-10`}
+              className={` absolute lg:w-[696px] xl:w-[800px]  h-[57px] border border-[${faqData[0]?.attributes.button[1].color}] rounded-[6px] p-4 pl-10`}
             />
             <div className="w-[18px] h-[18px] ">
               <Image
@@ -147,10 +147,10 @@ export default async function FAQPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {iconData[0]?.attributes.faqCard.map((item, index) => (
               <DownloadComponent
-              key={index} // Add a unique key prop
-              item={item} // Pass the current item
-              index={index} // Pass the index
-              faqData={faqData} // Pass the entire faqData
+              key={index} 
+              item={item} 
+              index={index} 
+              faqData={faqData} 
             />
             ))}
           </div>

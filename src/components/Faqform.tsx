@@ -1,10 +1,7 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleCheck,
-  faXmarkCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface FaqData {
   attributes: {
@@ -45,7 +42,7 @@ interface FaqFormProps {
   faqData: FaqData[];
 }
 
-export default function Faqform({ faqData }: FaqFormProps) {
+export default function FaqForm({ faqData }: FaqFormProps) {
   const [emailInput, setEmail] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
@@ -57,7 +54,7 @@ export default function Faqform({ faqData }: FaqFormProps) {
     setDescription(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent): void => {
+  const handleSubmit = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailPattern.test(emailInput);
@@ -68,6 +65,28 @@ export default function Faqform({ faqData }: FaqFormProps) {
         description,
       };
       console.log("Form Data:", formData);
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "a4443378-7e6b-4a8e-833a-4c1d0e92782d",
+            email: emailInput,
+            message: description,
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          console.log(result);
+        }
+      } catch (error) {
+        console.error("Error submitting the form", error);
+      }
     }
 
     setEmail("");
@@ -110,7 +129,7 @@ export default function Faqform({ faqData }: FaqFormProps) {
           onChange={handleDescriptionChange}
         ></textarea>
 
-        <div className="flex justify-end">
+        <div className="flex justify-end max-sm:w-[180px] max-sm:h-[50px]">
           <button
             type="submit"
             className={`bg-[${faqData[0]?.attributes.button[0].color}] text-white font-Quicksand font-bold w-full rounded-md sm:w-auto sm:px-8 sm:py-5 md:w-auto md:px-10 md:py-4 lg:w-auto lg:px-[30px] xl:w-auto xl:px-[30px]`}
