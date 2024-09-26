@@ -21,9 +21,9 @@ async function fetchtermData(): Promise<{
 }> {
   try {
     const res1 = await fetch(
-      "https://strapi-dev.seksa.today/api/terms?populate=*",
+      `https://strapi-dev.seksa.today/api/terms?populate=*&timestamp=${new Date().getTime()}`,
       {
-        cache: "no-store",
+        cache: "force-cache",
       }
     );
 

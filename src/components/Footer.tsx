@@ -13,9 +13,9 @@ async function fetchfooterData(): Promise<{
 }> {
   try {
     const res1 = await fetch(
-      "https://strapi-dev.seksa.today/api/footers?populate=*",
+      `https://strapi-dev.seksa.today/api/footers?populate=*&timestamp=${new Date().getTime()}`,
       {
-        cache: "no-store",
+        cache: "force-cache",
       }
     );
 

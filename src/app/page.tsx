@@ -91,12 +91,12 @@ async function fetchhomeData(): Promise<{
 }> {
   try {
     const [res1, res2] = await Promise.all([
-      fetch("https://strapi-dev.seksa.today/api/homes?populate=*", {
-        cache: "no-store",
+      fetch(`https://strapi-dev.seksa.today/api/homes?populate=*&timestamp=${new Date().getTime()}`, {
+        cache: "force-cache",
       }),
       fetch(
-        "https://strapi-dev.seksa.today/api/homes?populate[card][populate]=*",
-        { cache: "no-store" }
+        `https://strapi-dev.seksa.today/api/homes?populate[card][populate]=*&timestamp=${new Date().getTime()}`,
+        { cache: "force-cache", }
       ),
     ]);
     if (!res1.ok || !res2.ok) {

@@ -44,9 +44,9 @@ async function fetchinfoData(): Promise<{
 }> {
   try {
     const res1 = await fetch(
-      "https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*",
+      `https://strapi-dev.seksa.today/api/infomations?populate[social][populate]=*&populate[contact][populate]=*&populate[logo][populate]=*&timestamp=${new Date().getTime()}`,
       {
-        cache: "no-store",
+        cache: "force-cache",
       }
     );
 

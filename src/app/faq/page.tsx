@@ -78,12 +78,12 @@ async function fetchfaqData(): Promise<{
 }> {
   try {
     const [res1, res2] = await Promise.all([
-      fetch("https://strapi-dev.seksa.today/api/faqs?populate=*", {
-        cache: "no-store",
+      fetch(`https://strapi-dev.seksa.today/api/faqs?populate=*&timestamp=${new Date().getTime()}`, {
+        cache: "force-cache",
       }),
       fetch(
-        "https://strapi-dev.seksa.today/api/faqs?populate[faqCard][populate]=*&populate[button][populate]=*",
-        { cache: "no-store" }
+        `https://strapi-dev.seksa.today/api/faqs?populate[faqCard][populate]=*&populate[button][populate]=*&timestamp=${new Date().getTime()}`,
+        { cache: "force-cache", }
       ),
     ]);
     if (!res1.ok || !res2.ok) {
@@ -113,13 +113,13 @@ export default async function FAQPage() {
           <h1 className="text-2xl sm:text-3xl font-bold mb-9 font-Quicksand text-[#000000]">
             {faqData[0]?.attributes.heading1}
           </h1>
-          <div className="relative inline-block lg:right-[18rem] max-md:right-[11rem]">
+          <div className="relative md:mr-[60%] lg:mr-[15%] inline-block lg:right-[18rem] max-md:right-[11rem] ">
             <input
               typeof={`${faqData[0]?.attributes.button[1].type}`}
               placeholder={`${faqData[0]?.attributes.button[1].label}`}
-              className={` absolute lg:w-[696px] xl:w-[800px]  h-[57px] border border-[${faqData[0]?.attributes.button[1].color}] rounded-[6px] p-4 pl-10`}
+              className={` absolute lg:w-[696px] xl:w-[800px]  h-[57px] border border-[${faqData[0]?.attributes.button[1].color}] rounded-[6px] p-4 pl-10 max-sm:w-[350px] sm:w-[350px] md:w-[450px]`}
             />
-            <div className="w-[18px] h-[18px] ">
+            <div className="w-[18px] h-[18px]">
               <Image
                 src={`https://strapi-dev.seksa.today${iconData[0]?.attributes.button[1].image.data.attributes.url}`}
                 width={100}
@@ -133,7 +133,7 @@ export default async function FAQPage() {
       </div>
       <div className="py-4 w-full px-4">
         <div className="container mx-auto">
-          <h2 className="text-xl sm:text-3xl font-semibold mb-6 text-center">
+          <h2 className="text-xl sm:text-3xl font-semibold mb-6 text-center max-sm:text-2xl">
             {faqData[0]?.attributes.heading2}
           </h2>
           <QuestionsList questions={faqData[0]?.attributes.questionsList} />
@@ -141,7 +141,7 @@ export default async function FAQPage() {
       </div>
       <div className="py-12 flex justify-center items-center">
         <div className="container mx-auto">
-          <h2 className="sm:text-3xl font-Quicksand mb-8 text-center font-bold">
+          <h2 className="sm:text-3xl font-Quicksand mb-8 text-center font-bold max-sm:text-2xl">
             {faqData[0]?.attributes.heading3}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

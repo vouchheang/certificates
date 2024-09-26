@@ -19,7 +19,7 @@ async function fetchaboutUsData(): Promise<{
     const res1 = await fetch(
       "https://strapi-dev.seksa.today/api/abouts?populate=*",
       {
-        cache: "no-store",
+        cache: "force-cache",
       }
     );
 

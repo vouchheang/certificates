@@ -20,9 +20,9 @@ async function fetchprivacyData(): Promise<{
 }> {
   try {
     const res1 = await fetch(
-      "https://strapi-dev.seksa.today/api/privacies?populate=*",
+      `https://strapi-dev.seksa.today/api/privacies?populate=*&timestamp=${new Date().getTime()}`,
       {
-        cache: "no-store",
+        cache: "force-cache",
       }
     );
 
